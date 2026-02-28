@@ -1,0 +1,95 @@
+# ========================
+# Environment & Secrets
+# ========================
+.env
+.env.*
+.env.local
+.env.production
+.env.staging
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.secret
+*.credentials
+**/secrets/
+**/private/
+service-account*.json
+credentials.json
+token.json
+client_secret*.json
+
+# ========================
+# Virtual Environments
+# ========================
+nda/
+venv/
+.venv/
+env/
+ENV/
+
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# OS Files
+# ========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.DS_Store?
+._*
+
+# ========================
+# Documents (uploaded NDAs)
+# ========================
+documents/
+
+# ========================
+# Jupyter / Notebooks
+# ========================
+.ipynb_checkpoints/
+*.ipynb
+
+# ========================
+# Logs & Databases
+# ========================
+*.log
+*.sqlite3
+*.db
+
+# ========================
+# Misc
+# ========================
+*.bak
+*.tmp
+*.cache
+.cache/
