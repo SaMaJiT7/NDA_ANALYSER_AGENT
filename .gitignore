@@ -72,6 +72,10 @@ Desktop.ini
 # Documents (uploaded NDAs)
 # ========================
 documents/
+*.pdf
+*.docx
+*.doc
+*.txt
 
 # ========================
 # Jupyter / Notebooks
@@ -85,6 +89,13 @@ documents/
 *.log
 *.sqlite3
 *.db
+
+# ========================
+# Data / Output Files (may contain sensitive NDA content)
+# ========================
+data/
+validation_result.json
+*.json
 
 # ========================
 # Misc
