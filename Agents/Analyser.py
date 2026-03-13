@@ -1,11 +1,13 @@
 from typing import TypedDict, List, Optional
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 import json
 import os
+import re
 import logging
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_google_genai import ChatGoogleGenerativeAI
 from tools.retriever import (
@@ -36,6 +38,19 @@ def load_model():
         logger.info("Loading model...")
         _model = ChatHuggingFace(llm=llm)
     return _model
+
+# def load_model():
+#     global _model
+#     if _model is None:
+#         logger.info("Loading model...")
+#         _model = ChatOpenAI(
+#             model="llama-3.3-70b-versatile",
+#             api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
+#             base_url="https://api.groq.com/openai/v1",
+#             temperature=0.0,
+#             model_kwargs={"max_tokens": 1024},
+#         )
+#     return _model
 
 
 
@@ -257,8 +272,8 @@ def assess_clause(clause: dict) -> dict:
         logger.info(f"     ↳ Skipped — {clause_type}")
         return {**clause, "retrieved_sections": [], "assessment": None, "skipped": True}
 
-    # Step 1 — Retrieve
-    retrieved = retrieve_for_clause(clause, top_k=3)
+    # Step 1 — Retrieve (reuse pre-retrieved sections if already enriched)
+    retrieved = clause.get("retrieved_sections") or retrieve_for_clause(clause, top_k=3)
 
     if not retrieved:
         logger.warning(f"     ↳ ⚠️  No ICA sections retrieved")
@@ -311,30 +326,43 @@ def extract_company_name(structured_nda: dict) -> str:
     Tries to extract company name from preamble clause.
     Validator will use this for web search.
     """
+    # for clause in structured_nda.get("clauses", []):
+    #     if clause.get("clause_type") == "preamble":
+    #         # Pass preamble to LLM to extract company name
+    #         try:
+    #             prompt = (
+    #                 f"You are a legal entity extractor. "
+    #                 f"Identify the Disclosing Party (the company sharing confidential information) from the following NDA preamble. "
+    #                 f"Output ONLY the company name. No explanation, no quotes, no 'The company is...' statements.\n\n"
+    #                 f"TEXT: {clause.get('clause_text', '')[:2000]}"
+    #             )
+    #             response = get_gemini_model().invoke(prompt)
+
+    #             company_name = response.content
+    #             if not isinstance(company_name, str):
+    #                 return "Unknown Entity"
+    #             company_name = company_name.strip()
+    #             # 3. Fallback check (Safety for your paper's results)
+    #             if not company_name or len(company_name) < 2:
+    #                 return "Unknown Entity"
+    #             return company_name
+    #         except Exception as e:
+    #             print(f"Extraction Error: {e}")
+    #             return "Extraction Failed"
+
+    # return "Unknown Entity"
+
+
     for clause in structured_nda.get("clauses", []):
         if clause.get("clause_type") == "preamble":
-            # Pass preamble to LLM to extract company name
-            try:
-                prompt = (
-                    f"You are a legal entity extractor. "
-                    f"Identify the Disclosing Party (the company sharing confidential information) from the following NDA preamble. "
-                    f"Output ONLY the company name. No explanation, no quotes, no 'The company is...' statements.\n\n"
-                    f"TEXT: {clause.get('clause_text', '')[:2000]}"
-                )
-                response = get_gemini_model().invoke(prompt)
-
-                company_name = response.content
-                if not isinstance(company_name, str):
-                    return "Unknown Entity"
-                company_name = company_name.strip()
-                # 3. Fallback check (Safety for your paper's results)
-                if not company_name or len(company_name) < 2:
-                    return "Unknown Entity"
-                return company_name
-            except Exception as e:
-                print(f"Extraction Error: {e}")
-                return "Extraction Failed"
-
+            text = clause.get("clause_text", "")
+            # Match "Company Name, Inc." or "Company Name Ltd." patterns
+            match = re.search(
+                r'between\s+([A-Z][A-Za-z\s\.,]+(?:Inc|Ltd|LLC|Pvt|Corp|Co|Limited)[\.]*)',
+                text
+            )
+            if match:
+                return match.group(1).strip()
     return "Unknown Entity"
 
 # ── Main analyser function ────────────────────────
@@ -365,7 +393,12 @@ def run_analyser(structured_nda: dict) -> dict:
     company_name = extract_company_name(structured_nda)
     logger.info(f"  Company: {company_name}")
 
-    # Step 2 — Assess each clause
+    # Step 2 — Bulk pre-retrieval: enrich all clauses with ICA sections at once
+    logger.info("\n── Pre-retrieving ICA sections for all clauses ──")
+    structured_nda = retrieve_for_all_clauses(structured_nda, top_k=3, verbose=True)
+    clauses = structured_nda.get("clauses", [])
+
+    # Step 3 — Assess each clause (retrieved_sections already populated)
     assessed_clauses = []
 
 
@@ -376,7 +409,7 @@ def run_analyser(structured_nda: dict) -> dict:
         
         assessed_clauses.append(assessed)
 
-    # Step 3 — Compute overall risk score
+    # Step 4 — Compute overall risk score
     risk_summary = calculate_risk_score(assessed_clauses)
 
     logger.info(
@@ -390,7 +423,7 @@ def run_analyser(structured_nda: dict) -> dict:
         f"  VOID clauses   : {risk_summary['breakdown']['void_clauses']}"
     )
 
-    # Step 4 — Build final report
+    # Step 5 — Build final report
     report = {
         "nda_title"      : structured_nda.get("nda_title", "Unknown"),
         "company_name"   : company_name,       # ← validator uses this
@@ -441,6 +474,9 @@ if __name__ == "__main__":
     # Run analyser
     report = run_analyser(structured_nda)
 
+    # ── Save report ───────────────────────────────────
+    save_report(report, path=os.path.join(
+        os.path.dirname(os.path.dirname(__file__)), "data", "risk_report.json"))
 
 
     # Print clause by clause summary

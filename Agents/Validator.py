@@ -1,11 +1,12 @@
 from typing import TypedDict, List, Optional,Literal, cast
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 import json
 import os
 import logging
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 
 load_dotenv()
@@ -46,25 +47,32 @@ def load_prompt(path: str) -> str:
         return f.read()
 
 _chain = None
-validator_model = None
 
 VALIDATOR_PROMPT = load_prompt("prompts/ValidatorPrompt.md")
 
 def load_model():
-    global _chain, validator_model
+    global _chain
     if _chain is not None:
         return _chain
-    
-    logger.info("⏳ Loading validator model...")
 
+    logger.info("⏳ Loading validator model (Groq/DeepSeek)...")
+
+    # llm = ChatOpenAI(
+    #     model=os.getenv("Validator_MODEL"), # type: ignore
+    #     api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
+    #     base_url="https://api.groq.com/openai/v1",
+    #     temperature=0.0,
+    #     model_kwargs={"max_tokens": 1024},
+    # )
     llm = HuggingFaceEndpoint(
-        repo_id=os.getenv("HF1_MODEL"),
+        repo_id=os.getenv("HF_MODEL", "deepseek-ai/DeepSeek-V3"),
         task="text-generation",
         max_new_tokens=1024,
         do_sample=False,
         repetition_penalty=1.03,
-    ) # type: ignore
-    _llm = ChatHuggingFace(llm=llm)
+        ) # type: ignore
+    logger.info("Loading model...")
+    _model = ChatHuggingFace(llm=llm)
 
     # ── Use JsonOutputParser instead ──────────────
     parser = JsonOutputParser(pydantic_object=ValidationResult)
@@ -77,7 +85,7 @@ def load_model():
         }
     )
 
-    _chain = prompt | _llm | parser
+    _chain = prompt | _model | parser
 
     logger.info("✅ Validator model loaded")
     return _chain
@@ -208,21 +216,21 @@ def save_validation(result: dict, path: str = "validation_result.json") -> None:
 # ── Test ──────────────────────────────────────────
 if __name__ == "__main__":
 
-    # from Agents.Analyser import run_analyser, save_report
+    from Agents.Analyser import run_analyser, save_report
 
-    # # ── Step 1 — Load structured NDA ─────────────
-    # structured_nda_path = os.path.join(
-    # os.path.dirname(os.path.dirname(__file__)), "data", "structured_nda.json")
+    # ── Step 1 — Load structured NDA ─────────────
+    structured_nda_path = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "data", "structured_nda.json")
 
-    # if not os.path.exists(structured_nda_path):
-    #     logger.error("❌ structured_nda.json not found — run orchestrator first")
-    #     exit(1)
+    if not os.path.exists(structured_nda_path):
+        logger.error("❌ structured_nda.json not found — run orchestrator first")
+        exit(1)
 
-    # with open(structured_nda_path, "r", encoding="utf-8") as f:
-    #     structured_nda = json.load(f)
+    with open(structured_nda_path, "r", encoding="utf-8") as f:
+        structured_nda = json.load(f)
 
-    # if isinstance(structured_nda, list):
-    #     structured_nda = structured_nda[0]
+    if isinstance(structured_nda, list):
+        structured_nda = structured_nda[0]
 
     # # ── Step 2 — Run analyser ─────────────────────
     # logger.info("── Running Analyser ─────────────────────────")
@@ -246,7 +254,8 @@ if __name__ == "__main__":
         logger.error("❌ Validator returned empty result")
         exit(1)
 
-    save_validation(validation_result)
+    save_validation(validation_result, path=os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "data", "validation_result.json"))
 
     # ── Step 4 — Print final summary ──────────────
     print(f"\n── Final Summary ────────────────────────────")

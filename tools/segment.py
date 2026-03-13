@@ -320,7 +320,7 @@ def segment_nda(nda_text):
     return None
 
 if __name__ == "__main__":
-    pdf_path = os.path.join(BASE_DIR, "documents", "nda_example.pdf")
+    pdf_path = os.path.join(BASE_DIR, "documents", "Nda_document1.pdf")
     nda_text = extract_nda_text(pdf_path)
     structured = segment_nda(nda_text)
 
@@ -328,15 +328,11 @@ if __name__ == "__main__":
         print("❌ Segmentation failed completely")
         exit(1)
 
-    print(f"\n── Result ───────────────────────────────────")
-    print(f"  Method        : {structured['segmented_by']}")
-    print(f"  NDA Title     : {structured['nda_title']}")
-    print(f"  Total Clauses : {structured['total_clauses']}")
-    print(f"\n  {'#':<4} {'Type':<20} {'Title'}")
-    print(f"  {'─' * 50}")
+    # ── Save to data/structured_nda.json ──────────
+    output_path = os.path.join(BASE_DIR, "data", "structured_nda.json")
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(structured, f, indent=2, ensure_ascii=False)
+    print(f"✅ Saved to {output_path}")
 
-    for clause in structured["clauses"]:
-        c: dict = clause
-        print(f"  {c['clause_number']:<4} "
-              f"{c['clause_type']:<20} "
-              f"{c['clause_title'][:35]}")
+    print(f"\n── Result ───────────────────────────────────")
