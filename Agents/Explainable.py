@@ -129,7 +129,7 @@ def keyword_explain(clause_text : str, retrieved_sections: list[dict]) -> dict:
         }
     
     clause = clause_text.lower()
-    clause_tokens = set(re.findall(r'\b\w+\b', clause))
+    
 
     per_section = []
     all_matched_keywords = set()
@@ -421,13 +421,14 @@ def run_xai(risk_report: dict) -> dict:
             f"     ↳ Keywords  : {keyword_xai['matched_keywords'][:5]} "
             f"overlap={keyword_xai['overlap_score']}"
         )
+        clause_text_safe = clause_text.replace("{", "{{").replace("}", "}}")
 
         # ── Component 3 — CoT XAI (Groq) ─────────
         # Groq API call 1
         cot_xai = cot_explain(
             clause_title = clause_title,
             clause_type  = clause_type,
-            clause_text  = clause_text,
+            clause_text  = clause_text_safe,
             risk_level   = risk_level
         )
 

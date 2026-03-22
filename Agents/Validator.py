@@ -47,11 +47,12 @@ def load_prompt(path: str) -> str:
         return f.read()
 
 _chain = None
+_model = None
 
 VALIDATOR_PROMPT = load_prompt("prompts/ValidatorPrompt.md")
 
 def load_model():
-    global _chain
+    global _chain,_model
     if _chain is not None:
         return _chain
 
@@ -170,8 +171,7 @@ def validate_report(risk_report: dict) -> dict:
             "company_name": company_name
         })
 
-        icon = "✅" if result["valid"] == "Approved" else \
-               "⚠️ " if result["valid"] == "Needs Revision" else "❌"
+        icon = "✅" if result["valid"] == "Approved" else "⚠️ " if result["valid"] == "Needs Revision" else "❌"
 
         logger.info(
             f"\n── Validation Result ────────────────────────\n"

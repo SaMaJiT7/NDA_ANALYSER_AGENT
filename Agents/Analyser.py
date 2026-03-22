@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_google_genai import ChatGoogleGenerativeAI
+from datetime import datetime
+from pathlib import Path
 from tools.retriever import (
     retrieve_for_clause,
     retrieve_for_all_clauses,
@@ -22,6 +24,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+BASE_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── Model Loading ─────────────────────────────────
 _model = None
@@ -184,42 +187,11 @@ class ClauseAssessment(BaseModel):
     red_flags          : List[str]  = Field(description="Concerning phrases from the clause text")
     negotiation_points : List[str]  = Field(description="What employee should ask to change")
 
+def load_prompt(path: str) -> str:
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
 
-ANALYSER_TEMPLATE = """
-You are a legal analyst specialising in Indian employment law and the Indian Contract Act 1872.
-
-You will be given one NDA clause and relevant sections from the Indian Contract Act 1872.
-
-Your job is to assess whether this clause is problematic for the EMPLOYEE.
-
-IMPORTANT RULES:
-- Always reason from the perspective of protecting the employee
-- Cite specific ICA sections by number when making assessments
-- Be direct — if a clause is VOID say it is VOID, do not hedge
-- Base all reasoning on the retrieved ICA sections provided
-- Do not invent legal precedents — only use what is provided
-
-ADDITIONAL RULES:
-- Assess the CONTENT of the clause, not just its heading
-- If a termination clause contains confidentiality obligations— treat those obligations as confidentiality type for legal analysis
-- If only part of a clause is void — set is_void: false and explain which specific sub-clause or phrase is void in reasoning
-- Cite ALL relevant ICA sections — not just the primary one
-- If clause survives termination indefinitely — always check S.27
-
-RISK LEVELS:
-- HIGH   : Clause is void, voidable, or significantly harmful to employee
-- MEDIUM : Clause is enforceable but unfair or overly broad
-- LOW    : Clause is standard and acceptable
-
-NDA CLAUSE:
-Title      : {clause_title}
-Type       : {clause_type}
-Clause Text: {clause_text}
-
-RELEVANT ICA SECTIONS:
-{retrieved_sections}
-
-{format_instructions}"""
+ANALYSER_TEMPLATE = load_prompt("prompts/Analyser_prompt.md")
 
 def analyser_chain():
     """
@@ -256,7 +228,14 @@ def get_gemini_model():
 
 
 
-def assess_clause(clause: dict) -> dict:
+def assess_clause(clause: dict,feedback: str | None = None) -> dict:
+    """
+    Assesses a single NDA clause using RAG + LLM.
+
+    Args:
+        clause  : clause dict with clause_text, clause_type etc.
+        feedback: optional validator feedback for retry injected into prompt to guide correction
+    """
 
     clause_number = clause.get("clause_number", "?")
     clause_title  = clause.get("clause_title", "Untitled")
@@ -282,17 +261,27 @@ def assess_clause(clause: dict) -> dict:
     # Step 2 — Format retrieved sections
     formatted_sections = format_for_prompt(retrieved, include_score=True)
 
-    # Step 3 — Run LangChain chain
+    # ── Build feedback block for prompt ──────────
+    # Empty string on first run — validator feedback on retry
+    if feedback:
+        feedback_block = f"\nVALIDATOR FEEDBACK — ADDRESS THESE ISSUES:\n{feedback}\n"
+    else:
+        feedback_block = ""
+
+    # ── Run chain ─────────────────────────────────
     try:
-        chain      = get_chain()
-        assessment = chain.invoke({
+        assessment = get_chain().invoke({
             "clause_title"      : clause_title,
             "clause_type"       : clause_type,
             "clause_text"       : clause.get("clause_text", ""),
-            "retrieved_sections": formatted_sections
+            "retrieved_sections": formatted_sections,
+            "feedback"          : feedback_block
         })
 
-        # assessment is already a validated dict — no JSON parsing needed
+        # Clean the violated_sections list
+        if "violated_sections" in assessment:
+            assessment["violated_sections"] = standardize_citations(assessment["violated_sections"])
+
         logger.info(
             f"     ↳ ✅ Risk: {assessment.get('risk_level')} | "
             f"Void: {assessment.get('is_void')} | "
@@ -318,7 +307,21 @@ def assess_clause(clause: dict) -> dict:
             "skipped"           : True
         }
 
-
+def standardize_citations(violated_sections: List[str]) -> List[str]:
+    """
+    Normalizes variations like 'Section 27', 'Sec 27', or '27' 
+    into the strict 'S.27' format required by the Validator.
+    """
+    standardized = []
+    for section in violated_sections:
+        # Match 'Section 27', 'Sec. 27', 'Sec 27', or just '27'
+        # Group 1 captures the number
+        match = re.search(r'(?:Section|Sec\.?|S\.?|)\s*(\d+)', section, re.IGNORECASE)
+        if match:
+            standardized.append(f"S.{match.group(1)}")
+        else:
+            standardized.append(section) # Fallback if no digits found
+    return list(set(standardized)) # Remove duplicates
 
 # ── Extract company name from NDA ─────────────────
 def extract_company_name(structured_nda: dict) -> str:
@@ -358,60 +361,81 @@ def extract_company_name(structured_nda: dict) -> str:
             text = clause.get("clause_text", "")
             # Match "Company Name, Inc." or "Company Name Ltd." patterns
             match = re.search(
-                r'between\s+([A-Z][A-Za-z\s\.,]+(?:Inc|Ltd|LLC|Pvt|Corp|Co|Limited)[\.]*)',
-                text
+                r'(?:between|amongst)\s+([A-Z][A-Za-z0-9\s\.,&]+(?:Inc|Ltd|LLC|Pvt|Corp|Co|Limited|Company)[\.]*)',
+                text,
+                re.IGNORECASE
             )
             if match:
                 return match.group(1).strip()
     return "Unknown Entity"
 
 # ── Main analyser function ────────────────────────
-def run_analyser(structured_nda: dict) -> dict:
+def run_analyser(structured_nda: dict,feedback: Optional[str]  = None,failed_clauses : Optional[list] = None) -> dict:
     """
     Full analyser pipeline.
     Assesses every clause and computes overall risk score.
 
     Args:
         structured_nda: structured NDA dict from orchestrator
+        feedback: Optional feedback from the validator
+        failed_clauses: Optional list of clauses that failed assessment
 
     Returns:
         complete risk report dict
     """
+
+    is_retry = failed_clauses is not None and len(failed_clauses) > 0
+ 
     logger.info("\n── Analyser Starting ────────────────────────")
     logger.info(
-        f"  NDA    : {structured_nda.get('nda_title', 'Unknown')}\n"
-        f"  Clauses: {structured_nda.get('total_clauses', 0)}"
+        f"  NDA      : {structured_nda.get('nda_title', 'Unknown')}\n"
+        f"  Clauses  : {structured_nda.get('total_clauses', 0)}\n"
+        f"  Mode     : {'RETRY — clauses ' + str(failed_clauses) if is_retry else 'FULL RUN'}"
     )
-
+ 
+    if feedback:
+        logger.info(f"  Feedback : {feedback[:100]}...")
+ 
     clauses = structured_nda.get("clauses", [])
-
+ 
     if not clauses:
         logger.error("❌ No clauses to assess")
         return {}
+    
     
     # Step 1 — Extract company name for validator
     company_name = extract_company_name(structured_nda)
     logger.info(f"  Company: {company_name}")
 
     # Step 2 — Bulk pre-retrieval: enrich all clauses with ICA sections at once
-    logger.info("\n── Pre-retrieving ICA sections for all clauses ──")
-    structured_nda = retrieve_for_all_clauses(structured_nda, top_k=3, verbose=True)
-    clauses = structured_nda.get("clauses", [])
+    if not is_retry:
+        logger.info("\n── Pre-retrieving ICA sections for all clauses ──")
+        structured_nda = retrieve_for_all_clauses(structured_nda, top_k=3, verbose=True)
+        clauses        = structured_nda.get("clauses", [])
 
-    # Step 3 — Assess each clause (retrieved_sections already populated)
+    # ── Step 3 — Assess clauses ───────────────────
     assessed_clauses = []
 
-
     for clause in clauses:
-        assessed = assess_clause(clause)
+        clause_number = clause.get("clause_number")
 
-        assessed["clause_label"] = clause.get("clause_title", "") 
-        
+        # ── On retry — skip clauses that passed ──
+        if is_retry and clause_number not in failed_clauses:
+            logger.info(
+                f"  ⏭️  Clause {clause_number} — "
+                f"{clause.get('clause_title', '')} — keeping previous assessment"
+            )
+            assessed_clauses.append(clause)
+            continue
+
+        # ── Assess — with feedback on retry ───────
+        assessed              = assess_clause(clause, feedback=feedback if is_retry else None)
+        assessed["clause_label"] = clause.get("clause_title", "")
         assessed_clauses.append(assessed)
 
-    # Step 4 — Compute overall risk score
+    # ── Step 4 — Compute risk score ───────────────
     risk_summary = calculate_risk_score(assessed_clauses)
-
+ 
     logger.info(
         f"\n── Risk Summary ─────────────────────────────\n"
         f"  Score          : {risk_summary['risk_score']}/100\n"
@@ -422,34 +446,43 @@ def run_analyser(structured_nda: dict) -> dict:
         f"  LOW clauses    : {risk_summary['breakdown']['low_clauses']}\n"
         f"  VOID clauses   : {risk_summary['breakdown']['void_clauses']}"
     )
-
-    # Step 5 — Build final report
+ 
+    # ── Step 5 — Build report ─────────────────────
     report = {
-        "nda_title"      : structured_nda.get("nda_title", "Unknown"),
-        "company_name"   : company_name,       # ← validator uses this
-        "segmented_by"   : structured_nda.get("segmented_by", "unknown"),
-        "risk_score"     : risk_summary["risk_score"],
-        "risk_label"     : risk_summary["risk_label"],
-        "recommendation" : risk_summary["recommendation"],
-        "breakdown"      : risk_summary["breakdown"],
-        "clause_reports" : assessed_clauses,
-        "total_assessed" : len([
-            c for c in assessed_clauses
-            if not c.get("skipped")
-        ]),
-        "total_skipped"  : len([
-            c for c in assessed_clauses
-            if c.get("skipped")
-        ])
+        "nda_title"     : structured_nda.get("nda_title", "Unknown"),
+        "company_name"  : company_name,
+        "segmented_by"  : structured_nda.get("segmented_by", "unknown"),
+        "segment_output_path" : structured_nda.get("segment_output_path", ""),
+        "risk_score"    : risk_summary["risk_score"],
+        "risk_label"    : risk_summary["risk_label"],
+        "recommendation": risk_summary["recommendation"],
+        "breakdown"     : risk_summary["breakdown"],
+        "clause_reports": assessed_clauses,
+        "total_assessed": len([c for c in assessed_clauses if not c.get("skipped")]),
+        "total_skipped" : len([c for c in assessed_clauses if c.get("skipped")])
     }
-
+ 
     logger.info("\n✅ Analyser complete — ready for validator")
     return report
 
-def save_report(result: dict, path: str = "risk_report.json") -> None:
-    with open(path, "w", encoding="utf-8") as f:
+def save_report(result: dict,output_filename=None) -> None:
+    if output_filename is None:
+        segment_path = result.get("segment_output_path", "")
+        if segment_path:
+            stem            = Path(segment_path).stem
+            ts              = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_filename = f"{stem}_risk_report_{ts}.json"
+        else:
+            ts              = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_filename = f"risk_report_{ts}.json"
+
+    output_path = os.path.join(BASE_DIR, "data", output_filename)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
-    logger.info(f"✅ Risk report saved to {path}")
+
+    logger.info(f"✅ Report saved to {output_path}")
 
 # ── Test ──────────────────────────────────────────
 if __name__ == "__main__":
@@ -475,8 +508,7 @@ if __name__ == "__main__":
     report = run_analyser(structured_nda)
 
     # ── Save report ───────────────────────────────────
-    save_report(report, path=os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "data", "risk_report.json"))
+    save_report(report)
 
 
     # Print clause by clause summary

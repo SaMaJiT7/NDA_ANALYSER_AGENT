@@ -5,6 +5,8 @@ import json
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
+from datetime import datetime
+from pathlib import Path
 
 # ── LLM Segmentation ──────────────────────────────
 SEGMENT_PROMPT = """
@@ -318,6 +320,27 @@ def segment_nda(nda_text):
     # Both failed
     print("❌ Both LLM and regex segmentation failed")
     return None
+
+def run_segmentation_pipeline(pdf_path, output_filename=None):
+    nda_text = extract_nda_text(pdf_path)
+    structured = segment_nda(nda_text)
+
+    if not structured:
+        print("❌ Segmentation failed completely")
+        return None
+
+    if output_filename is None:
+        stem = Path(pdf_path).stem
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_filename = f"{stem}_structured_{ts}.json"
+
+    output_path = os.path.join(BASE_DIR, "data", output_filename)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(structured, f, indent=2, ensure_ascii=False)
+
+    return structured, output_path
 
 if __name__ == "__main__":
     pdf_path = os.path.join(BASE_DIR, "documents", "Nda_document1.pdf")
