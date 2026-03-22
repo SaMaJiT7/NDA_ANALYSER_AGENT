@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_google_genai import ChatGoogleGenerativeAI
+from datetime import datetime
+from pathlib import Path
 from tools.retriever import (
     retrieve_for_clause,
     retrieve_for_all_clauses,
@@ -22,6 +24,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── Model Loading ─────────────────────────────────
 _model = None
@@ -366,18 +369,39 @@ def extract_company_name(structured_nda: dict) -> str:
     return "Unknown Entity"
 
 # ── Main analyser function ────────────────────────
-def run_analyser(structured_nda: dict) -> dict:
+def run_analyser(
+    structured_nda: dict,
+    feedback: Optional[str] = None,
+    failed_clauses: Optional[List[int]] = None,
+    previous_report: Optional[dict] = None,
+) -> dict:
     """
     Full analyser pipeline.
     Assesses every clause and computes overall risk score.
 
+    When called after a validator rejection, supply ``feedback`` and
+    ``failed_clauses`` so that only the flagged clauses are re-assessed
+    while passing the rest of the previous report through unchanged.
+
     Args:
-        structured_nda: structured NDA dict from orchestrator
+        structured_nda:  structured NDA dict from orchestrator / segmenter
+        feedback:        optional textual feedback from the validator
+        failed_clauses:  optional list of clause numbers that need re-analysis
+        previous_report: full risk-report from the previous analyser run
+                         (required when ``failed_clauses`` is supplied)
 
     Returns:
         complete risk report dict
     """
+    rerun_mode = failed_clauses is not None and len(failed_clauses) > 0
+
     logger.info("\n── Analyser Starting ────────────────────────")
+    if rerun_mode:
+        logger.info("  ↳ RE-RUN mode — only failed clauses will be re-assessed")
+        logger.info(f"  ↳ Failed clauses : {failed_clauses}")
+    if feedback:
+        logger.info(f"  ↳ Validator feedback : {feedback}")
+
     logger.info(
         f"  NDA    : {structured_nda.get('nda_title', 'Unknown')}\n"
         f"  Clauses: {structured_nda.get('total_clauses', 0)}"
@@ -388,7 +412,7 @@ def run_analyser(structured_nda: dict) -> dict:
     if not clauses:
         logger.error("❌ No clauses to assess")
         return {}
-    
+
     # Step 1 — Extract company name for validator
     company_name = extract_company_name(structured_nda)
     logger.info(f"  Company: {company_name}")
@@ -399,14 +423,34 @@ def run_analyser(structured_nda: dict) -> dict:
     clauses = structured_nda.get("clauses", [])
 
     # Step 3 — Assess each clause (retrieved_sections already populated)
+    # In re-run mode, carry over previously assessed clauses and only re-assess
+    # the ones flagged by the validator.
+    if rerun_mode and previous_report:
+        previous_by_number: dict[int, dict] = {
+            c.get("clause_number"): c
+            for c in previous_report.get("clause_reports", [])
+            if c.get("clause_number") is not None
+        }
+    else:
+        previous_by_number = {}
+
     assessed_clauses = []
 
-
     for clause in clauses:
-        assessed = assess_clause(clause)
+        clause_number = clause.get("clause_number")
 
-        assessed["clause_label"] = clause.get("clause_title", "") 
-        
+        # In re-run mode, skip clauses that the validator did NOT flag
+        if rerun_mode and failed_clauses and clause_number not in failed_clauses:
+            carried = previous_by_number.get(clause_number)
+            if carried is not None:
+                assessed_clauses.append(carried)
+                logger.info(
+                    f"  ↷  Clause {clause_number} carried over from previous run"
+                )
+                continue
+
+        assessed = assess_clause(clause)
+        assessed["clause_label"] = clause.get("clause_title", "")
         assessed_clauses.append(assessed)
 
     # Step 4 — Compute overall risk score
@@ -446,10 +490,19 @@ def run_analyser(structured_nda: dict) -> dict:
     logger.info("\n✅ Analyser complete — ready for validator")
     return report
 
-def save_report(result: dict, path: str = "risk_report.json") -> None:
-    with open(path, "w", encoding="utf-8") as f:
+def save_report(result: dict, output_filename: Optional[str] = None) -> None:
+    if output_filename is None:
+        nda_title = result.get("nda_title", "report")
+        stem = re.sub(r"[^\w\-]", "_", nda_title)[:40]
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_filename = f"{stem}_risk_{ts}.json"
+
+    output_path = os.path.join(BASE_DIR, "data", output_filename)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
-    logger.info(f"✅ Risk report saved to {path}")
+    logger.info(f"✅ Risk report saved to {output_path}")
 
 # ── Test ──────────────────────────────────────────
 if __name__ == "__main__":
@@ -475,8 +528,7 @@ if __name__ == "__main__":
     report = run_analyser(structured_nda)
 
     # ── Save report ───────────────────────────────────
-    save_report(report, path=os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "data", "risk_report.json"))
+    save_report(report)
 
 
     # Print clause by clause summary
