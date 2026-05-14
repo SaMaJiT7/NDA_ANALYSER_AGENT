@@ -93,9 +93,10 @@ documents/
 # ========================
 # Data / Output Files (may contain sensitive NDA content)
 # ========================
-data/
 validation_result.json
 *.json
+!data/
+!data/**
 
 # ========================
 # Misc
