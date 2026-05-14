@@ -97,7 +97,6 @@ validation_result.json
 *.json
 !data/
 !data/**
-!data/**/*.json
 
 # ========================
 # Misc
