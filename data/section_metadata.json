@@ -1,0 +1,421 @@
+{
+  "2": {
+    "chapter": "Preliminary",
+    "chapter_title": "Interpretation",
+    "legal_concept": "definitions",
+    "nda_clause_types": ["general", "definitions"],
+    "trigger_keywords": [
+      "agreement", "contract", "void", "voidable",
+      "promise", "consideration", "promisor"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Use to verify if NDA qualifies as a valid contract"
+  },
+
+  "10": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "valid contract formation",
+    "nda_clause_types": ["validity", "formation"],
+    "trigger_keywords": [
+      "free consent", "competent parties",
+      "lawful object", "valid contract", "void"
+    ],
+    "employee_risk": "MEDIUM",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract"
+  },
+
+  "11": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "competency to contract",
+    "nda_clause_types": ["validity", "capacity"],
+    "trigger_keywords": [
+      "age", "majority", "minor",
+      "sound mind", "competent", "capacity"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "NDA signed by minor or person of unsound mind is void"
+  },
+
+  "12": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "sound mind",
+    "nda_clause_types": ["validity", "capacity"],
+    "trigger_keywords": [
+      "sound mind", "unsound mind", "mental capacity",
+      "understand contract", "rational judgment"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "NDA signed when employee was not of sound mind is void"
+  },
+
+  "13": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "consent",
+    "nda_clause_types": ["consent", "agreement"],
+    "trigger_keywords": [
+      "consent", "agree", "mutual agreement",
+      "same thing", "same sense"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Baseline — two parties must agree on same thing in same sense"
+  },
+
+  "14": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "free consent",
+    "nda_clause_types": ["consent", "free consent", "validity"],
+    "trigger_keywords": [
+      "free consent", "coercion", "undue influence",
+      "fraud", "misrepresentation", "mistake"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "Gateway section — if consent not free, NDA is voidable"
+  },
+
+  "15": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "coercion",
+    "nda_clause_types": ["coercion", "forced signing", "threats"],
+    "trigger_keywords": [
+      "coercion", "forced", "threatened", "sign or fired",
+      "pressure", "detained", "criminal intimidation"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "NDA signed under threat of termination may qualify as coercion"
+  },
+
+  "16": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "undue influence",
+    "nda_clause_types": [
+      "undue influence", "employer pressure",
+      "power imbalance", "forced signing"
+    ],
+    "trigger_keywords": [
+      "authority", "dominate", "influence",
+      "sign or lose job", "employer authority",
+      "fiduciary", "mental capacity", "pressure"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "Employer-employee is inherently unequal. S.16(2)(a) directly covers authority relationships. Burden of proof shifts to employer."
+  },
+
+  "17": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "fraud",
+    "nda_clause_types": [
+      "fraud", "misrepresentation",
+      "concealment", "false disclosure"
+    ],
+    "trigger_keywords": [
+      "fraud", "concealment", "false statement",
+      "deceive", "mislead", "active concealment",
+      "silence", "non-disclosure", "intent to deceive"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "If employer concealed true scope, duration or effect of NDA — entire NDA is voidable by employee"
+  },
+
+  "18": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "misrepresentation",
+    "nda_clause_types": [
+      "misrepresentation", "false information",
+      "incorrect disclosure"
+    ],
+    "trigger_keywords": [
+      "misrepresentation", "false assertion",
+      "incorrect", "breach of duty",
+      "misleading", "innocent misrepresentation"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "Even innocent misrepresentation makes NDA voidable — employer need not have intended to deceive"
+  },
+
+  "19": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "voidability without free consent",
+    "nda_clause_types": [
+      "remedy", "voidable contract",
+      "rescission", "set aside"
+    ],
+    "trigger_keywords": [
+      "voidable", "set aside", "rescind",
+      "option of party", "cancel contract", "undo agreement"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "Employee remedy section — explains HOW to void an NDA obtained by fraud, coercion or misrepresentation"
+  },
+
+  "19A": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "set aside for undue influence",
+    "nda_clause_types": [
+      "remedy", "undue influence remedy",
+      "set aside", "rescission"
+    ],
+    "trigger_keywords": [
+      "set aside", "undue influence", "rescind",
+      "court discretion", "benefit received"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": true,
+    "enforcement_likely": false,
+    "agent_hint": "Court can set aside NDA on terms it considers just — even partially if employee received some benefit"
+  },
+
+  "20": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "bilateral mistake of fact",
+    "nda_clause_types": ["mistake", "void contract"],
+    "trigger_keywords": [
+      "mistake", "both parties wrong",
+      "common mistake", "factual error",
+      "misunderstood terms"
+    ],
+    "employee_risk": "MEDIUM",
+    "typically_void": true,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "If both employer and employee misunderstood a key NDA term — agreement may be void"
+  },
+
+  "21": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "mistake of law",
+    "nda_clause_types": ["mistake", "law"],
+    "trigger_keywords": [
+      "mistake of law", "legal error",
+      "misunderstood law", "wrong legal assumption"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Mistake about Indian law does not void contract — only mistake of foreign law treated as mistake of fact"
+  },
+
+  "22": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "unilateral mistake of fact",
+    "nda_clause_types": ["mistake"],
+    "trigger_keywords": [
+      "one party mistake", "unilateral mistake",
+      "misunderstood", "one sided error"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Mistake by only one party does not void contract — both parties must be mistaken"
+  },
+
+  "23": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "unlawful object or consideration",
+    "nda_clause_types": [
+      "unlawful clause", "public policy",
+      "confidentiality abuse", "whistleblower suppression"
+    ],
+    "trigger_keywords": [
+      "unlawful", "immoral", "public policy",
+      "forbidden by law", "injury to person",
+      "suppress evidence", "hide illegal activity",
+      "whistleblower", "illegal business"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": true,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object"
+  },
+
+  "27": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "restraint of trade",
+    "nda_clause_types": [
+        "non-compete",
+        "restraint of trade",
+        "post-employment restriction",
+        "non-solicitation",
+        "industry restriction",
+        "indefinite confidentiality",
+        "survival clause",
+        "perpetual obligation"
+    ],
+    "trigger_keywords": [
+        "compete", "competitor", "similar business",
+        "join", "restricted period", "industry",
+        "after termination", "post employment",
+        "cannot work", "prohibited from joining",
+        "same field", "rival company",
+        "survive termination",
+        "survives termination",
+        "indefinitely",
+        "perpetual",
+        "no time limit",
+        "without limitation",
+        "forever bound"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": true,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "Post-employment non-competes and indefinite survival obligations are VOID in India under S.27. Any clause that survives termination indefinitely and restricts employee is void. Exception only for goodwill sale."
+  },
+
+  "28": {
+    "chapter": "Chapter II",
+    "chapter_title": "Of Contracts, Voidable Contracts and Void Agreements",
+    "legal_concept": "restraint of legal proceedings",
+    "nda_clause_types": [
+      "jurisdiction clause", "dispute resolution",
+      "waiver of rights", "legal proceedings",
+      "arbitration only", "exclusive jurisdiction"
+    ],
+    "trigger_keywords": [
+      "jurisdiction", "waive", "cannot sue",
+      "exclusive court", "arbitration only",
+      "no legal action", "dispute resolution",
+      "binding arbitration", "waiver of claims",
+      "sole remedy"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": true,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access."
+  },
+
+  "56": {
+    "chapter": "Chapter IV",
+    "chapter_title": "Of the Performance of Contracts",
+    "legal_concept": "frustration and impossibility",
+    "nda_clause_types": [
+      "impossibility", "frustration",
+      "changed circumstances", "force majeure"
+    ],
+    "trigger_keywords": [
+        "impossible", "frustration", "unlawful",
+        "changed circumstances", "supervening event",
+        "force majeure", "cannot perform",
+        "subsequent illegality"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": true,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void"
+  },
+
+  "73": {
+    "chapter": "Chapter VI",
+    "chapter_title": "Of the Consequences of Breach of Contract",
+    "legal_concept": "compensation for breach",
+    "nda_clause_types": [
+      "damages", "compensation",
+      "breach remedy", "loss calculation"
+    ],
+    "trigger_keywords": [
+      "damages", "loss", "compensation",
+      "breach", "liable to pay", "actual loss",
+      "financial damage", "harm caused"
+    ],
+    "employee_risk": "MEDIUM",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Only ACTUAL loss is compensable — not speculative. Employee only liable for damage employer can directly prove resulted from breach."
+  },
+
+  "74": {
+    "chapter": "Chapter VI",
+    "chapter_title": "Of the Consequences of Breach of Contract",
+    "legal_concept": "penalty clause",
+    "nda_clause_types": [
+      "penalty clause", "liquidated damages",
+      "breach penalty", "fixed damages"
+    ],
+    "trigger_keywords": [
+      "penalty", "pay INR", "pay Rs", "lakhs",
+      "crores", "fixed amount", "liquidated damages",
+      "sum named", "stipulated amount",
+      "breach fee", "predetermined damages"
+    ],
+    "employee_risk": "HIGH",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": false,
+    "agent_hint": "Courts give REASONABLE compensation — NOT the full penalty named in NDA. A clause saying pay 50 lakhs on breach will be reduced to actual proven loss by court."
+  },
+
+  "75": {
+    "chapter": "Chapter VI",
+    "chapter_title": "Of the Consequences of Breach of Contract",
+    "legal_concept": "compensation on rescission",
+    "nda_clause_types": [
+      "rescission remedy", "compensation",
+      "rightful termination"
+    ],
+    "trigger_keywords": [
+      "rescind", "cancel", "terminate contract",
+      "compensation after cancellation",
+      "rightful rescission"
+    ],
+    "employee_risk": "LOW",
+    "typically_void": false,
+    "voidable": false,
+    "enforcement_likely": true,
+    "agent_hint": "Employee who rightfully rescinds NDA is entitled to compensation for any damage suffered"
+  }
+}

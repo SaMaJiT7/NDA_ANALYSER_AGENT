@@ -1,0 +1,1476 @@
+{
+  "pdf_path": "c:\\NDA_Analyser\\documents\\nda_example02.pdf",
+  "structured_nda": {
+    "nda_title": "NON-DISCLOSURE AGREEMENT",
+    "total_clauses": 17,
+    "clauses": [
+      {
+        "clause_number": 1,
+        "clause_title": "Definition of Confidential Information",
+        "clause_text": "“Confidential Information” shall mean and include all non-public information, written or oral, disclosed, directly or indirectly, through any means of communication or observation (including oral, graphic, written or electronic form) by the Disclosing Party or any of its affiliates or representatives to or for the benefit of the Receiving Party from the Effective Date, irrespective of whether such information: (a) has been specifically marked as “confidential” at the time of disclosure; (b) is treated as proprietary information by the Disclosing Party; or (c) is owned or developed by the Disclosing Party.",
+        "clause_type": "definitions",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S17_1",
+            "section": "17",
+            "title": "“Fraud” defined",
+            "body": "“Fraud” means and includes any of the following acts committed by a party to a contract, or with his connivance, or by his agent, with intent to deceive another party thereto of his agent, or to induce him to enter into the contract:— (1) the suggestion, as a fact, of that which is not true, by one who does not believe it to be true; (2) the active concealment of a fact by one having knowledge or belief of the fact; (3) a promise made without any intention of performing it; (4) any other act fitted to deceive; (5) any such act or omission as the law specially declares to be fraudulent. \nExplanation.—Mere silence as to facts likely to affect the willingness of a person to enter into a contract is not fraud, unless the circumstances of the case are such that, regard being had to them, it is the duty of the person keeping silence to speak, or unless his silence is, in itself, equivalent to speech. \n \nIllustrations (a) A sells, by auction, to B, a horse which A knows to be unsound. A says nothing to B about the horse’s unsoundness. \nThis is not fraud in A. (b) B is A’s daughter and has just come of age. Here, the relation between the parties would make it A’s duty to tell B if the horse is unsound. (c) B says to A—“If you do not deny it, I shall assume that the horse is sound.” A says nothing. Here, A’s silence is equivalent to speech. (d) A and B, being traders, enter upon a contract. A has private information of a change in prices which would affect B’s willingness to proceed with the contract. A is not bound to inform B.",
+            "score": 0.7787,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "fraud",
+              "misrepresentation",
+              "concealment",
+              "false disclosure"
+            ],
+            "agent_hint": "If employer concealed true scope, duration or effect of NDA — entire NDA is voidable by employee",
+            "legal_concept": "fraud"
+          },
+          {
+            "chunk_id": "S18_1",
+            "section": "18",
+            "title": "“Misrepresentation” defined",
+            "body": "“Misrepresentation” means and includes— (1) the positive assertion, in a manner not warranted by the information of the person making it, of that which is not true, though he believes it to be true; (2) any breach of duty which, without an intent to deceive, gains an advantage to the person committing it, or any one claiming under him; by misleading another to his prejudice, or to the prejudice of any one claiming under him; (3) causing, however innocently, a party to an agreement, to make a mistake as to the substance of the thing which is the subject of the agreement.",
+            "score": 0.7714,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "misrepresentation",
+              "false information",
+              "incorrect disclosure"
+            ],
+            "agent_hint": "Even innocent misrepresentation makes NDA voidable — employer need not have intended to deceive",
+            "legal_concept": "misrepresentation"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7537,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          }
+        ]
+      },
+      {
+        "clause_number": 2,
+        "clause_title": "Scope of Confidential Information",
+        "clause_text": "Confidential Information shall include any financial, business, proprietary or technical information of the Disclosing Party.",
+        "clause_type": "definitions",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S17_1",
+            "section": "17",
+            "title": "“Fraud” defined",
+            "body": "“Fraud” means and includes any of the following acts committed by a party to a contract, or with his connivance, or by his agent, with intent to deceive another party thereto of his agent, or to induce him to enter into the contract:— (1) the suggestion, as a fact, of that which is not true, by one who does not believe it to be true; (2) the active concealment of a fact by one having knowledge or belief of the fact; (3) a promise made without any intention of performing it; (4) any other act fitted to deceive; (5) any such act or omission as the law specially declares to be fraudulent. \nExplanation.—Mere silence as to facts likely to affect the willingness of a person to enter into a contract is not fraud, unless the circumstances of the case are such that, regard being had to them, it is the duty of the person keeping silence to speak, or unless his silence is, in itself, equivalent to speech. \n \nIllustrations (a) A sells, by auction, to B, a horse which A knows to be unsound. A says nothing to B about the horse’s unsoundness. \nThis is not fraud in A. (b) B is A’s daughter and has just come of age. Here, the relation between the parties would make it A’s duty to tell B if the horse is unsound. (c) B says to A—“If you do not deny it, I shall assume that the horse is sound.” A says nothing. Here, A’s silence is equivalent to speech. (d) A and B, being traders, enter upon a contract. A has private information of a change in prices which would affect B’s willingness to proceed with the contract. A is not bound to inform B.",
+            "score": 0.7738,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "fraud",
+              "misrepresentation",
+              "concealment",
+              "false disclosure"
+            ],
+            "agent_hint": "If employer concealed true scope, duration or effect of NDA — entire NDA is voidable by employee",
+            "legal_concept": "fraud"
+          },
+          {
+            "chunk_id": "S18_1",
+            "section": "18",
+            "title": "“Misrepresentation” defined",
+            "body": "“Misrepresentation” means and includes— (1) the positive assertion, in a manner not warranted by the information of the person making it, of that which is not true, though he believes it to be true; (2) any breach of duty which, without an intent to deceive, gains an advantage to the person committing it, or any one claiming under him; by misleading another to his prejudice, or to the prejudice of any one claiming under him; (3) causing, however innocently, a party to an agreement, to make a mistake as to the substance of the thing which is the subject of the agreement.",
+            "score": 0.7584,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "misrepresentation",
+              "false information",
+              "incorrect disclosure"
+            ],
+            "agent_hint": "Even innocent misrepresentation makes NDA voidable — employer need not have intended to deceive",
+            "legal_concept": "misrepresentation"
+          },
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7476,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          }
+        ]
+      },
+      {
+        "clause_number": 3,
+        "clause_title": "Use of Confidential Information",
+        "clause_text": "All such Confidential Information shared under this Agreement shall be used by the Parties exclusively for the Purpose and neither Party shall disclose or otherwise use the Confidential Information for any other purpose or in any other manner without the prior written approval of the Disclosing Party.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 4,
+        "clause_title": "Disclosure to Employees",
+        "clause_text": "The Confidential Information shared under this Agreement may be disclosed by the Receiving Party to other employees on a need to know basis, with written consent from the Disclosing Party, in connection with the Purpose, and who shall protect the Confidential Information in accordance with the terms of this Agreement.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 5,
+        "clause_title": "Standard of Protection",
+        "clause_text": "The Receiving Party shall protect the Confidential Information in the same manner as it would protect its own confidential information.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 6,
+        "clause_title": "Exclusions from Confidentiality Obligations",
+        "clause_text": "The confidentiality obligations under this Agreement shall not apply to Confidential Information which: \na. was in the public domain or generally available to the public prior to receipt thereof by Receiving Party from the Disclosing Party, or which subsequently becomes part of the public domain or generally available to the public other than as a result of a breach of this Agreement by Receiving Party; \nb. was in the possession of Receiving Party prior to receipt from the Disclosing Party; \nc. is later lawfully received by Receiving Party from a third party without any confidentiality restrictions applicable; \nd. is independently created or developed by the Receiving Party without use or reference of the Confidential Information of the Disclosing Party; or, \ne. is required to be disclosed by operation of applicable law.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 7,
+        "clause_title": "Compelled Disclosure",
+        "clause_text": "Notwithstanding anything to the contrary contained in this Agreement, Confidential Information may be disclosed as required by applicable law, regulations or governmental procedure, provided the Receiving Party notifies the Disclosing Party prior to such disclosure, unless prohibited by law, so as to afford the Disclosing Party reasonable opportunity to object or seek an appropriate protective order with respect to such disclosure.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 8,
+        "clause_title": "Publicity Restrictions",
+        "clause_text": "The Receiving Party agrees not to issue or release for publication any articles or advertising or publicity matter relating to this Agreement which mention or imply the name of the Disclosing Party any of its affiliates, or subject matter hereof, unless prior written consent is granted by the Disclosing Party subject only to Clause 7. The Receiving Party shall make such amendments to any such press release or public statement as are reasonably requested by the Disclosing Party.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 9,
+        "clause_title": "No Transfer of Intellectual Property",
+        "clause_text": "No transfer of intellectual property right either by way of assignment or license is either granted or implied by the disclosure of Confidential Information to the Receiving Party. The fact that Confidential Information is disclosed to the Receiving Party shall not be deemed to constitute any representation, warranty or inducement by the Disclosing Party of any kind (including of its accuracy or correctness) with respect to the Confidential Information, including without limitation, which such use will not infringe on intellectual property rights of any third party.",
+        "clause_type": "ip-ownership",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 10,
+        "clause_title": "Return of Confidential Information",
+        "clause_text": "The Receiving Party shall, upon the request of the Disclosing Party or upon the termination of this Agreement, return to the Disclosing Party all Confidential Information, including drawings, documents, reports and other tangible manifestations of Confidential Information received by the Receiving Party pursuant to this Agreement, together with all copies and reproductions thereof.",
+        "clause_type": "termination",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7368,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S19_1",
+            "section": "19",
+            "title": "Voidability of agreements without free consent",
+            "body": "When consent to an agreement is caused by coercion,1*** fraud or misrepresentation, the agreement is a contract voidable at the option of the party whose consent was so caused. \nA party to a contract whose consent was caused by fraud or misrepresentation, may, if he thinks fit, insist that the contract shall be performed, and that he shall be put in the position in which he would have been if the representations made had been true. \n\nException.—If such consent was caused by misrepresentation or by silence, fraudulent within the meaning of section 17, the contract, nevertheless, is not voidable, if the party whose consent was so caused had the means of discovering the truth with ordinary diligence. \n\nExplanation.—A fraud or misrepresentation which did not cause the consent to a contract of the party on whom such fraud was practised, or to whom such misrepresentation was made, does not render a contract voidable.",
+            "score": 0.7314,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "remedy",
+              "voidable contract",
+              "rescission",
+              "set aside"
+            ],
+            "agent_hint": "Employee remedy section — explains HOW to void an NDA obtained by fraud, coercion or misrepresentation",
+            "legal_concept": "voidability without free consent"
+          },
+          {
+            "chunk_id": "S75_1",
+            "section": "75",
+            "title": "Party rightfully rescinding contract, entitled to compensation",
+            "body": "A person who rightfully rescinds a contract is entitled to compensation for any damage which he has sustained through the non-fulfilment of the contract. \nIllustration \nA, a singer, contracts with B, the manager of a theatre, to sing at his theatre for two nights in every week during the next two months, and B engages to pay her 100 rupees for each night’s performance. On the sixth night, A wilfully absents herself from the theatre, and B, in consequence, rescinds the contract. B is entitled to claim compensation for the damage which he has sustained through the non-fulfilment of the contract.",
+            "score": 0.7309,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "rescission remedy",
+              "compensation",
+              "rightful termination"
+            ],
+            "agent_hint": "Employee who rightfully rescinds NDA is entitled to compensation for any damage suffered",
+            "legal_concept": "compensation on rescission"
+          }
+        ]
+      },
+      {
+        "clause_number": 11,
+        "clause_title": "Term and Post-Termination Obligations",
+        "clause_text": "This Agreement shall be effective as of the Effective Date and shall terminate on the delivery of written notice of termination from either Party; provided, however, that the obligations of the Receiving Party under this Agreement shall remain in effect for a period of [__] years from the date of termination.",
+        "clause_type": "termination",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S27_1",
+            "section": "27",
+            "title": "Agreement in restraint of trade, void",
+            "body": "Every agreement by which any one is restrained from exercising a lawful profession, trade or business of any kind, is to that extent void. \nException 1.—Saving of agreement not to carry on business of which good-will is sold.—One who sells the good-will of a business may agree with the buyer to refrain from carrying on a similar business, within specified local limits, so long as the buyer, or any person deriving title to the good-will from him, carries on a like business therein, provided that such limits appear to the Court reasonable, regard being had to the nature of the business.",
+            "score": 0.7638,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "non-compete",
+              "restraint of trade",
+              "post-employment restriction",
+              "non-solicitation",
+              "industry restriction",
+              "indefinite confidentiality",
+              "survival clause",
+              "perpetual obligation"
+            ],
+            "agent_hint": "Post-employment non-competes and indefinite survival obligations are VOID in India under S.27. Any clause that survives termination indefinitely and restricts employee is void. Exception only for goodwill sale.",
+            "legal_concept": "restraint of trade"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7578,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          },
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7556,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          }
+        ]
+      },
+      {
+        "clause_number": 12,
+        "clause_title": "Governing Law and Jurisdiction",
+        "clause_text": "This Agreement shall be governed and construed in accordance with the laws of India. The competent courts at [__] India shall have the sole and exclusive jurisdiction over any dispute that arises in relation to this Agreement.",
+        "clause_type": "jurisdiction",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S28_1",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Every agreement,— (a) by which any party thereto is restricted absolutely from enforcing his rights under or in respect of any contract, by the usual legal proceedings in the ordinary tribunals, or which limits the time within which he may thus enforce his rights; or (b) which extinguishes the rights of any party thereto, or discharges any party thereto, from any liability, under or in respect of any contract on the expiry of a specified period so as to restrict any party from enforcing his rights, is void to the extent. \n\nException 1.—Saving of contract to refer to arbitration dispute that may arise.—This section shall not render illegal a contract, by which two or more persons agree that any dispute which may arise between them in respect of any subject or class of subjects shall be referred to arbitration, and that only the amount awarded in such arbitration shall be recoverable in respect of the dispute so referred. Exception 2.—Saving of contract to refer questions that have already arisen.—Nor shall this section render illegal any contract in writing, by which two or more persons agree to refer to arbitration any question between them which has already arisen, or affect any provision of any law in force for the time being as to references to arbitration.\n\n1. Exceptions 2 and 3 rep. by Act 9 of 1932, s. 73 and the Second Schedule.",
+            "score": 0.7673,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          },
+          {
+            "chunk_id": "S28_2",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Exception 3.—Saving of a guarantee agreement of a bank or a financial institution.—This section shall not render illegal a contract in writing by which any bank or financial institution stipulate a term in a guarantee or any agreement making a provision for guarantee for extinguishment of the rights or discharge of any party thereto from any liability under or in respect of such guarantee or agreement on the expiry of a specified period which is not less than one year from the date of occurring or non-occurring of a specified event for extinguishment or discharge of such party from the said liability. \n\nExplanation.—(i) In Exception 3, the expression “bank” means— (a) a “banking company” as defined in clause (c) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (b) “a corresponding new bank” as defined in clause (da) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (c) “State Bank of India” constituted under section 3 of the State Bank of India Act, 1955 (23 of 1955); (d) “a subsidiary bank” as defined in clause (k) of section 2 of the State Bank of India (Subsidiary \nBanks) Act, 1959(38 of 1959); (e) “a Regional Rural Bank” established under section 3 of the Regional Rural Banks \nAct, 1976(21 of 1976); (f) “a Co-operative Bank” as defined in clause (cci) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (g) “a multi-State co-operative bank” as defined in clause (cciiia) of section 5 of the Banking \nRegulation Act, 1949(10 of 1949); and (ii) In Exception 3, the expression “a financial institution” means any public financial institution within the meaning of section 4A of the Companies Act, 1956(1 of 1956).",
+            "score": 0.7592,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          }
+        ]
+      },
+      {
+        "clause_number": 13,
+        "clause_title": "Partner's Representations and Covenants",
+        "clause_text": "The Partner represents and covenants that its performance of this Agreement does not and will not breach any agreement it has entered into or will enter into with any third party. The Partner agrees not to enter into any written or oral agreement that conflicts with the provisions of this Agreement.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7655,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7633,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7601,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          }
+        ]
+      },
+      {
+        "clause_number": 14,
+        "clause_title": "Authority to Execute Agreement",
+        "clause_text": "The individuals executing this Agreement represent and warrant that they are empowered and duly authorized execute this Agreement on behalf of the parties they represent. Each Party represents and warrants to the other Party that it is authorised to execute this Agreement and is competent to discharge the obligations under this Agreement.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S11_1",
+            "section": "11",
+            "title": "Who are competent to contract",
+            "body": "Every person is competent to contract who is of the age of majority according to the law to which he is subject, and who is of sound mind, and is not disqualified from contracting by any law to which he is subject.",
+            "score": 0.8028,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "capacity"
+            ],
+            "agent_hint": "NDA signed by minor or person of unsound mind is void",
+            "legal_concept": "competency to contract"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7776,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7697,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          }
+        ]
+      },
+      {
+        "clause_number": 15,
+        "clause_title": "No Partnership or Agency",
+        "clause_text": "Nothing in this Agreement will be construed to create a partnership, joint venture, franchise, fiduciary, employment or agency relationship between the parties. Neither Party has any express or implied authority to assume or create any obligations on behalf of the other or to bind the other to any contract, agreement or undertaking with any third party.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7851,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7818,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7755,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          }
+        ]
+      },
+      {
+        "clause_number": 16,
+        "clause_title": "Severability",
+        "clause_text": "If any provision of this Agreement shall be held by a court of competent jurisdiction to be illegal, invalid or unenforceable, the remaining provisions shall remain in full force and effect.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S11_1",
+            "section": "11",
+            "title": "Who are competent to contract",
+            "body": "Every person is competent to contract who is of the age of majority according to the law to which he is subject, and who is of sound mind, and is not disqualified from contracting by any law to which he is subject.",
+            "score": 0.7698,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "capacity"
+            ],
+            "agent_hint": "NDA signed by minor or person of unsound mind is void",
+            "legal_concept": "competency to contract"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7672,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          },
+          {
+            "chunk_id": "S28_1",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Every agreement,— (a) by which any party thereto is restricted absolutely from enforcing his rights under or in respect of any contract, by the usual legal proceedings in the ordinary tribunals, or which limits the time within which he may thus enforce his rights; or (b) which extinguishes the rights of any party thereto, or discharges any party thereto, from any liability, under or in respect of any contract on the expiry of a specified period so as to restrict any party from enforcing his rights, is void to the extent. \n\nException 1.—Saving of contract to refer to arbitration dispute that may arise.—This section shall not render illegal a contract, by which two or more persons agree that any dispute which may arise between them in respect of any subject or class of subjects shall be referred to arbitration, and that only the amount awarded in such arbitration shall be recoverable in respect of the dispute so referred. Exception 2.—Saving of contract to refer questions that have already arisen.—Nor shall this section render illegal any contract in writing, by which two or more persons agree to refer to arbitration any question between them which has already arisen, or affect any provision of any law in force for the time being as to references to arbitration.\n\n1. Exceptions 2 and 3 rep. by Act 9 of 1932, s. 73 and the Second Schedule.",
+            "score": 0.7668,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          }
+        ]
+      },
+      {
+        "clause_number": 17,
+        "clause_title": "Entire Agreement and Amendments",
+        "clause_text": "This Agreement contains the full and complete understanding of the parties with respect to the subject matter hereof, and supersedes all prior representations and understandings, whether oral or written. This Agreement may be amended only in writing by mutual agreement of the Parties.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.785,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S19_1",
+            "section": "19",
+            "title": "Voidability of agreements without free consent",
+            "body": "When consent to an agreement is caused by coercion,1*** fraud or misrepresentation, the agreement is a contract voidable at the option of the party whose consent was so caused. \nA party to a contract whose consent was caused by fraud or misrepresentation, may, if he thinks fit, insist that the contract shall be performed, and that he shall be put in the position in which he would have been if the representations made had been true. \n\nException.—If such consent was caused by misrepresentation or by silence, fraudulent within the meaning of section 17, the contract, nevertheless, is not voidable, if the party whose consent was so caused had the means of discovering the truth with ordinary diligence. \n\nExplanation.—A fraud or misrepresentation which did not cause the consent to a contract of the party on whom such fraud was practised, or to whom such misrepresentation was made, does not render a contract voidable.",
+            "score": 0.7488,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "remedy",
+              "voidable contract",
+              "rescission",
+              "set aside"
+            ],
+            "agent_hint": "Employee remedy section — explains HOW to void an NDA obtained by fraud, coercion or misrepresentation",
+            "legal_concept": "voidability without free consent"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.747,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          }
+        ]
+      }
+    ],
+    "segmented_by": "llm"
+  },
+  "risk_report": {
+    "nda_title": "NON-DISCLOSURE AGREEMENT",
+    "company_name": "Unknown Entity",
+    "segmented_by": "llm",
+    "segment_output_path": "",
+    "risk_score": 23,
+    "risk_label": "LOW RISK",
+    "recommendation": "Standard NDA — review recommended",
+    "breakdown": {
+      "high_clauses": 1,
+      "medium_clauses": 0,
+      "low_clauses": 0,
+      "void_clauses": [
+        "Term and Post-Termination Obligations"
+      ]
+    },
+    "clause_reports": [
+      {
+        "clause_number": 1,
+        "clause_title": "Definition of Confidential Information",
+        "clause_text": "“Confidential Information” shall mean and include all non-public information, written or oral, disclosed, directly or indirectly, through any means of communication or observation (including oral, graphic, written or electronic form) by the Disclosing Party or any of its affiliates or representatives to or for the benefit of the Receiving Party from the Effective Date, irrespective of whether such information: (a) has been specifically marked as “confidential” at the time of disclosure; (b) is treated as proprietary information by the Disclosing Party; or (c) is owned or developed by the Disclosing Party.",
+        "clause_type": "definitions",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S17_1",
+            "section": "17",
+            "title": "“Fraud” defined",
+            "body": "“Fraud” means and includes any of the following acts committed by a party to a contract, or with his connivance, or by his agent, with intent to deceive another party thereto of his agent, or to induce him to enter into the contract:— (1) the suggestion, as a fact, of that which is not true, by one who does not believe it to be true; (2) the active concealment of a fact by one having knowledge or belief of the fact; (3) a promise made without any intention of performing it; (4) any other act fitted to deceive; (5) any such act or omission as the law specially declares to be fraudulent. \nExplanation.—Mere silence as to facts likely to affect the willingness of a person to enter into a contract is not fraud, unless the circumstances of the case are such that, regard being had to them, it is the duty of the person keeping silence to speak, or unless his silence is, in itself, equivalent to speech. \n \nIllustrations (a) A sells, by auction, to B, a horse which A knows to be unsound. A says nothing to B about the horse’s unsoundness. \nThis is not fraud in A. (b) B is A’s daughter and has just come of age. Here, the relation between the parties would make it A’s duty to tell B if the horse is unsound. (c) B says to A—“If you do not deny it, I shall assume that the horse is sound.” A says nothing. Here, A’s silence is equivalent to speech. (d) A and B, being traders, enter upon a contract. A has private information of a change in prices which would affect B’s willingness to proceed with the contract. A is not bound to inform B.",
+            "score": 0.7787,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "fraud",
+              "misrepresentation",
+              "concealment",
+              "false disclosure"
+            ],
+            "agent_hint": "If employer concealed true scope, duration or effect of NDA — entire NDA is voidable by employee",
+            "legal_concept": "fraud"
+          },
+          {
+            "chunk_id": "S18_1",
+            "section": "18",
+            "title": "“Misrepresentation” defined",
+            "body": "“Misrepresentation” means and includes— (1) the positive assertion, in a manner not warranted by the information of the person making it, of that which is not true, though he believes it to be true; (2) any breach of duty which, without an intent to deceive, gains an advantage to the person committing it, or any one claiming under him; by misleading another to his prejudice, or to the prejudice of any one claiming under him; (3) causing, however innocently, a party to an agreement, to make a mistake as to the substance of the thing which is the subject of the agreement.",
+            "score": 0.7714,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "misrepresentation",
+              "false information",
+              "incorrect disclosure"
+            ],
+            "agent_hint": "Even innocent misrepresentation makes NDA voidable — employer need not have intended to deceive",
+            "legal_concept": "misrepresentation"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7537,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          }
+        ]
+      },
+      {
+        "clause_number": 2,
+        "clause_title": "Scope of Confidential Information",
+        "clause_text": "Confidential Information shall include any financial, business, proprietary or technical information of the Disclosing Party.",
+        "clause_type": "definitions",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S17_1",
+            "section": "17",
+            "title": "“Fraud” defined",
+            "body": "“Fraud” means and includes any of the following acts committed by a party to a contract, or with his connivance, or by his agent, with intent to deceive another party thereto of his agent, or to induce him to enter into the contract:— (1) the suggestion, as a fact, of that which is not true, by one who does not believe it to be true; (2) the active concealment of a fact by one having knowledge or belief of the fact; (3) a promise made without any intention of performing it; (4) any other act fitted to deceive; (5) any such act or omission as the law specially declares to be fraudulent. \nExplanation.—Mere silence as to facts likely to affect the willingness of a person to enter into a contract is not fraud, unless the circumstances of the case are such that, regard being had to them, it is the duty of the person keeping silence to speak, or unless his silence is, in itself, equivalent to speech. \n \nIllustrations (a) A sells, by auction, to B, a horse which A knows to be unsound. A says nothing to B about the horse’s unsoundness. \nThis is not fraud in A. (b) B is A’s daughter and has just come of age. Here, the relation between the parties would make it A’s duty to tell B if the horse is unsound. (c) B says to A—“If you do not deny it, I shall assume that the horse is sound.” A says nothing. Here, A’s silence is equivalent to speech. (d) A and B, being traders, enter upon a contract. A has private information of a change in prices which would affect B’s willingness to proceed with the contract. A is not bound to inform B.",
+            "score": 0.7738,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "fraud",
+              "misrepresentation",
+              "concealment",
+              "false disclosure"
+            ],
+            "agent_hint": "If employer concealed true scope, duration or effect of NDA — entire NDA is voidable by employee",
+            "legal_concept": "fraud"
+          },
+          {
+            "chunk_id": "S18_1",
+            "section": "18",
+            "title": "“Misrepresentation” defined",
+            "body": "“Misrepresentation” means and includes— (1) the positive assertion, in a manner not warranted by the information of the person making it, of that which is not true, though he believes it to be true; (2) any breach of duty which, without an intent to deceive, gains an advantage to the person committing it, or any one claiming under him; by misleading another to his prejudice, or to the prejudice of any one claiming under him; (3) causing, however innocently, a party to an agreement, to make a mistake as to the substance of the thing which is the subject of the agreement.",
+            "score": 0.7584,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "misrepresentation",
+              "false information",
+              "incorrect disclosure"
+            ],
+            "agent_hint": "Even innocent misrepresentation makes NDA voidable — employer need not have intended to deceive",
+            "legal_concept": "misrepresentation"
+          },
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7476,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          }
+        ]
+      },
+      {
+        "clause_number": 3,
+        "clause_title": "Use of Confidential Information",
+        "clause_text": "All such Confidential Information shared under this Agreement shall be used by the Parties exclusively for the Purpose and neither Party shall disclose or otherwise use the Confidential Information for any other purpose or in any other manner without the prior written approval of the Disclosing Party.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 4,
+        "clause_title": "Disclosure to Employees",
+        "clause_text": "The Confidential Information shared under this Agreement may be disclosed by the Receiving Party to other employees on a need to know basis, with written consent from the Disclosing Party, in connection with the Purpose, and who shall protect the Confidential Information in accordance with the terms of this Agreement.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 5,
+        "clause_title": "Standard of Protection",
+        "clause_text": "The Receiving Party shall protect the Confidential Information in the same manner as it would protect its own confidential information.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 6,
+        "clause_title": "Exclusions from Confidentiality Obligations",
+        "clause_text": "The confidentiality obligations under this Agreement shall not apply to Confidential Information which: \na. was in the public domain or generally available to the public prior to receipt thereof by Receiving Party from the Disclosing Party, or which subsequently becomes part of the public domain or generally available to the public other than as a result of a breach of this Agreement by Receiving Party; \nb. was in the possession of Receiving Party prior to receipt from the Disclosing Party; \nc. is later lawfully received by Receiving Party from a third party without any confidentiality restrictions applicable; \nd. is independently created or developed by the Receiving Party without use or reference of the Confidential Information of the Disclosing Party; or, \ne. is required to be disclosed by operation of applicable law.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 7,
+        "clause_title": "Compelled Disclosure",
+        "clause_text": "Notwithstanding anything to the contrary contained in this Agreement, Confidential Information may be disclosed as required by applicable law, regulations or governmental procedure, provided the Receiving Party notifies the Disclosing Party prior to such disclosure, unless prohibited by law, so as to afford the Disclosing Party reasonable opportunity to object or seek an appropriate protective order with respect to such disclosure.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 8,
+        "clause_title": "Publicity Restrictions",
+        "clause_text": "The Receiving Party agrees not to issue or release for publication any articles or advertising or publicity matter relating to this Agreement which mention or imply the name of the Disclosing Party any of its affiliates, or subject matter hereof, unless prior written consent is granted by the Disclosing Party subject only to Clause 7. The Receiving Party shall make such amendments to any such press release or public statement as are reasonably requested by the Disclosing Party.",
+        "clause_type": "confidentiality",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 9,
+        "clause_title": "No Transfer of Intellectual Property",
+        "clause_text": "No transfer of intellectual property right either by way of assignment or license is either granted or implied by the disclosure of Confidential Information to the Receiving Party. The fact that Confidential Information is disclosed to the Receiving Party shall not be deemed to constitute any representation, warranty or inducement by the Disclosing Party of any kind (including of its accuracy or correctness) with respect to the Confidential Information, including without limitation, which such use will not infringe on intellectual property rights of any third party.",
+        "clause_type": "ip-ownership",
+        "retrieved_sections": []
+      },
+      {
+        "clause_number": 10,
+        "clause_title": "Return of Confidential Information",
+        "clause_text": "The Receiving Party shall, upon the request of the Disclosing Party or upon the termination of this Agreement, return to the Disclosing Party all Confidential Information, including drawings, documents, reports and other tangible manifestations of Confidential Information received by the Receiving Party pursuant to this Agreement, together with all copies and reproductions thereof.",
+        "clause_type": "termination",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7368,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S19_1",
+            "section": "19",
+            "title": "Voidability of agreements without free consent",
+            "body": "When consent to an agreement is caused by coercion,1*** fraud or misrepresentation, the agreement is a contract voidable at the option of the party whose consent was so caused. \nA party to a contract whose consent was caused by fraud or misrepresentation, may, if he thinks fit, insist that the contract shall be performed, and that he shall be put in the position in which he would have been if the representations made had been true. \n\nException.—If such consent was caused by misrepresentation or by silence, fraudulent within the meaning of section 17, the contract, nevertheless, is not voidable, if the party whose consent was so caused had the means of discovering the truth with ordinary diligence. \n\nExplanation.—A fraud or misrepresentation which did not cause the consent to a contract of the party on whom such fraud was practised, or to whom such misrepresentation was made, does not render a contract voidable.",
+            "score": 0.7314,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "remedy",
+              "voidable contract",
+              "rescission",
+              "set aside"
+            ],
+            "agent_hint": "Employee remedy section — explains HOW to void an NDA obtained by fraud, coercion or misrepresentation",
+            "legal_concept": "voidability without free consent"
+          },
+          {
+            "chunk_id": "S75_1",
+            "section": "75",
+            "title": "Party rightfully rescinding contract, entitled to compensation",
+            "body": "A person who rightfully rescinds a contract is entitled to compensation for any damage which he has sustained through the non-fulfilment of the contract. \nIllustration \nA, a singer, contracts with B, the manager of a theatre, to sing at his theatre for two nights in every week during the next two months, and B engages to pay her 100 rupees for each night’s performance. On the sixth night, A wilfully absents herself from the theatre, and B, in consequence, rescinds the contract. B is entitled to claim compensation for the damage which he has sustained through the non-fulfilment of the contract.",
+            "score": 0.7309,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "rescission remedy",
+              "compensation",
+              "rightful termination"
+            ],
+            "agent_hint": "Employee who rightfully rescinds NDA is entitled to compensation for any damage suffered",
+            "legal_concept": "compensation on rescission"
+          }
+        ]
+      },
+      {
+        "clause_number": 11,
+        "clause_title": "Term and Post-Termination Obligations",
+        "clause_text": "This Agreement shall be effective as of the Effective Date and shall terminate on the delivery of written notice of termination from either Party; provided, however, that the obligations of the Receiving Party under this Agreement shall remain in effect for a period of [__] years from the date of termination.",
+        "clause_type": "termination",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S27_1",
+            "section": "27",
+            "title": "Agreement in restraint of trade, void",
+            "body": "Every agreement by which any one is restrained from exercising a lawful profession, trade or business of any kind, is to that extent void. \nException 1.—Saving of agreement not to carry on business of which good-will is sold.—One who sells the good-will of a business may agree with the buyer to refrain from carrying on a similar business, within specified local limits, so long as the buyer, or any person deriving title to the good-will from him, carries on a like business therein, provided that such limits appear to the Court reasonable, regard being had to the nature of the business.",
+            "score": 0.7638,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "non-compete",
+              "restraint of trade",
+              "post-employment restriction",
+              "non-solicitation",
+              "industry restriction",
+              "indefinite confidentiality",
+              "survival clause",
+              "perpetual obligation"
+            ],
+            "agent_hint": "Post-employment non-competes and indefinite survival obligations are VOID in India under S.27. Any clause that survives termination indefinitely and restricts employee is void. Exception only for goodwill sale.",
+            "legal_concept": "restraint of trade"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7578,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          },
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7556,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          }
+        ],
+        "assessment": {
+          "risk_level": "HIGH",
+          "is_void": true,
+          "is_voidable": true,
+          "enforcement_likely": false,
+          "violated_sections": [
+            "S.27"
+          ],
+          "reasoning": "The clause is void under S.27 of the Indian Contract Act 1872 as it imposes a post-termination obligation that could be considered a restraint of trade. Since the obligation survives termination for a specified period, it may be seen as restricting the employee's ability to exercise their lawful profession or trade. The exception under S.27 for the sale of goodwill does not apply here, making the clause void.",
+          "employee_impact": "This clause could severely limit your ability to work in your chosen field after leaving the company, potentially causing significant financial and career harm.",
+          "red_flags": [
+            "post-termination obligations",
+            "restraint of trade"
+          ],
+          "negotiation_points": [
+            "request a specific and reasonable time limit for post-termination obligations",
+            "seek clarification on the scope of restricted activities",
+            "propose alternative language that balances the employer's interests with your own career freedom"
+          ]
+        },
+        "skipped": false,
+        "clause_label": "Term and Post-Termination Obligations"
+      },
+      {
+        "clause_number": 12,
+        "clause_title": "Governing Law and Jurisdiction",
+        "clause_text": "This Agreement shall be governed and construed in accordance with the laws of India. The competent courts at [__] India shall have the sole and exclusive jurisdiction over any dispute that arises in relation to this Agreement.",
+        "clause_type": "jurisdiction",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S28_1",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Every agreement,— (a) by which any party thereto is restricted absolutely from enforcing his rights under or in respect of any contract, by the usual legal proceedings in the ordinary tribunals, or which limits the time within which he may thus enforce his rights; or (b) which extinguishes the rights of any party thereto, or discharges any party thereto, from any liability, under or in respect of any contract on the expiry of a specified period so as to restrict any party from enforcing his rights, is void to the extent. \n\nException 1.—Saving of contract to refer to arbitration dispute that may arise.—This section shall not render illegal a contract, by which two or more persons agree that any dispute which may arise between them in respect of any subject or class of subjects shall be referred to arbitration, and that only the amount awarded in such arbitration shall be recoverable in respect of the dispute so referred. Exception 2.—Saving of contract to refer questions that have already arisen.—Nor shall this section render illegal any contract in writing, by which two or more persons agree to refer to arbitration any question between them which has already arisen, or affect any provision of any law in force for the time being as to references to arbitration.\n\n1. Exceptions 2 and 3 rep. by Act 9 of 1932, s. 73 and the Second Schedule.",
+            "score": 0.7673,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          },
+          {
+            "chunk_id": "S28_2",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Exception 3.—Saving of a guarantee agreement of a bank or a financial institution.—This section shall not render illegal a contract in writing by which any bank or financial institution stipulate a term in a guarantee or any agreement making a provision for guarantee for extinguishment of the rights or discharge of any party thereto from any liability under or in respect of such guarantee or agreement on the expiry of a specified period which is not less than one year from the date of occurring or non-occurring of a specified event for extinguishment or discharge of such party from the said liability. \n\nExplanation.—(i) In Exception 3, the expression “bank” means— (a) a “banking company” as defined in clause (c) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (b) “a corresponding new bank” as defined in clause (da) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (c) “State Bank of India” constituted under section 3 of the State Bank of India Act, 1955 (23 of 1955); (d) “a subsidiary bank” as defined in clause (k) of section 2 of the State Bank of India (Subsidiary \nBanks) Act, 1959(38 of 1959); (e) “a Regional Rural Bank” established under section 3 of the Regional Rural Banks \nAct, 1976(21 of 1976); (f) “a Co-operative Bank” as defined in clause (cci) of section 5 of the Banking Regulation \nAct, 1949(10 of 1949); (g) “a multi-State co-operative bank” as defined in clause (cciiia) of section 5 of the Banking \nRegulation Act, 1949(10 of 1949); and (ii) In Exception 3, the expression “a financial institution” means any public financial institution within the meaning of section 4A of the Companies Act, 1956(1 of 1956).",
+            "score": 0.7592,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          }
+        ]
+      },
+      {
+        "clause_number": 13,
+        "clause_title": "Partner's Representations and Covenants",
+        "clause_text": "The Partner represents and covenants that its performance of this Agreement does not and will not breach any agreement it has entered into or will enter into with any third party. The Partner agrees not to enter into any written or oral agreement that conflicts with the provisions of this Agreement.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7655,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7633,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7601,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          }
+        ]
+      },
+      {
+        "clause_number": 14,
+        "clause_title": "Authority to Execute Agreement",
+        "clause_text": "The individuals executing this Agreement represent and warrant that they are empowered and duly authorized execute this Agreement on behalf of the parties they represent. Each Party represents and warrants to the other Party that it is authorised to execute this Agreement and is competent to discharge the obligations under this Agreement.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S11_1",
+            "section": "11",
+            "title": "Who are competent to contract",
+            "body": "Every person is competent to contract who is of the age of majority according to the law to which he is subject, and who is of sound mind, and is not disqualified from contracting by any law to which he is subject.",
+            "score": 0.8028,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "capacity"
+            ],
+            "agent_hint": "NDA signed by minor or person of unsound mind is void",
+            "legal_concept": "competency to contract"
+          },
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.7776,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7697,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          }
+        ]
+      },
+      {
+        "clause_number": 15,
+        "clause_title": "No Partnership or Agency",
+        "clause_text": "Nothing in this Agreement will be construed to create a partnership, joint venture, franchise, fiduciary, employment or agency relationship between the parties. Neither Party has any express or implied authority to assume or create any obligations on behalf of the other or to bind the other to any contract, agreement or undertaking with any third party.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S23_2",
+            "section": "23",
+            "title": "What considerations and objects are lawful, and what not",
+            "body": "The agreement is void, as its object is unlawful. (f) A promises to obtain for B an employment in the public service and B promises to pay 1,000 rupees to A. The agreement is void, as the consideration for it is unlawful. (g) A, being agent for a landed proprietor, agrees for money, without the knowledge of his principal, to obtain for B a lease of land belonging to his principal. The agreement between A and B is void, as it implies a fraud by concealment, by A, on his principal. (h) A promises B to drop a prosecution which he has instituted against B for robbery, and B promises to restore the value of the things taken. The agreement is void, as its object is unlawful. (i) A’s estate is sold for arrears of revenue under the provisions of an Act of the Legislature, by which the defaulter is prohibited from purchasing the estate. B, upon an understanding with A, becomes the purchaser, and agrees to convey the estate to A upon receiving from him the price which B has paid. The agreement is void, as it renders the transaction, in effect, a purchase by the defaulter, and would so defeat the object of the law. (j) A, who is B’s mukhtar, promises to exercise his influence, as such, with B in favour of C, and C promises to pay 1,000 rupees to A. The agreement is void, because it is immoral. (k) A agrees to let her daughter to hire to B for concubinage. The agreement is void, because it is immoral, though the letting may not be punishable under the Indian Penal Code (45 of 1860). Void agreements",
+            "score": 0.7851,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "unlawful clause",
+              "public policy",
+              "confidentiality abuse",
+              "whistleblower suppression"
+            ],
+            "agent_hint": "NDA clause forcing employee to hide illegal acts or suppress whistleblowing is VOID — unlawful object",
+            "legal_concept": "unlawful object or consideration"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7818,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          },
+          {
+            "chunk_id": "S56_1",
+            "section": "56",
+            "title": "Agreement to do impossible act",
+            "body": "An agreement to do an act impossible in itself is void. \nContract to do an act afterwards becoming impossible or unlawful.—A contract to do an act which, after the contract is made, becomes impossible, or, by reason of some event which the promisor could not prevent, unlawful, becomes void when the act becomes impossible or unlawful.1 \nCompensation for loss through non-performance of act known to be impossible or unlawful.—\nWhere one person has promised to do something which he knew, or, with reasonable diligence, might have known, and which the promisee did not know, to be impossible or unlawful, such promisor must make compensation to such promisee for any loss which such promisee sustains through the non-\nperformance of the promise. \nIllustrations (a) A agrees with B to discover treasure by magic. The agreement is void. (b) A and B contract to marry each other. Before the time fixed for the marriage, A goes mad. The contract becomes void. (c) A contracts to marry B, being already married to C, and being forbidden by the law to which he is subject to practise polygamy, A must make compensation to B for the loss caused to her by the non-performance of his promise. (d) A contracts to take in cargo for B at a foreign port. A’s Government afterwards declares war against the country in which the port is situated. The contract becomes void when war is declared. (e) A contracts to act at a theatre for six months in consideration of a sum paid in advance by B. On several occasions A is too ill to act. The contract to act on those occasions becomes void.",
+            "score": 0.7755,
+            "employee_risk": "LOW",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "impossibility",
+              "frustration",
+              "changed circumstances",
+              "force majeure"
+            ],
+            "agent_hint": "If NDA obligations become impossible to perform due to external events — contract becomes void",
+            "legal_concept": "frustration and impossibility"
+          }
+        ]
+      },
+      {
+        "clause_number": 16,
+        "clause_title": "Severability",
+        "clause_text": "If any provision of this Agreement shall be held by a court of competent jurisdiction to be illegal, invalid or unenforceable, the remaining provisions shall remain in full force and effect.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S11_1",
+            "section": "11",
+            "title": "Who are competent to contract",
+            "body": "Every person is competent to contract who is of the age of majority according to the law to which he is subject, and who is of sound mind, and is not disqualified from contracting by any law to which he is subject.",
+            "score": 0.7698,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "capacity"
+            ],
+            "agent_hint": "NDA signed by minor or person of unsound mind is void",
+            "legal_concept": "competency to contract"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.7672,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          },
+          {
+            "chunk_id": "S28_1",
+            "section": "28",
+            "title": "Agreements in restraint of legal proceedings, void",
+            "body": "Every agreement,— (a) by which any party thereto is restricted absolutely from enforcing his rights under or in respect of any contract, by the usual legal proceedings in the ordinary tribunals, or which limits the time within which he may thus enforce his rights; or (b) which extinguishes the rights of any party thereto, or discharges any party thereto, from any liability, under or in respect of any contract on the expiry of a specified period so as to restrict any party from enforcing his rights, is void to the extent. \n\nException 1.—Saving of contract to refer to arbitration dispute that may arise.—This section shall not render illegal a contract, by which two or more persons agree that any dispute which may arise between them in respect of any subject or class of subjects shall be referred to arbitration, and that only the amount awarded in such arbitration shall be recoverable in respect of the dispute so referred. Exception 2.—Saving of contract to refer questions that have already arisen.—Nor shall this section render illegal any contract in writing, by which two or more persons agree to refer to arbitration any question between them which has already arisen, or affect any provision of any law in force for the time being as to references to arbitration.\n\n1. Exceptions 2 and 3 rep. by Act 9 of 1932, s. 73 and the Second Schedule.",
+            "score": 0.7668,
+            "employee_risk": "HIGH",
+            "typically_void": true,
+            "voidable": false,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "jurisdiction clause",
+              "dispute resolution",
+              "waiver of rights",
+              "legal proceedings",
+              "arbitration only",
+              "exclusive jurisdiction"
+            ],
+            "agent_hint": "Clauses blocking employee from approaching courts are VOID. Arbitration clauses are valid exception but cannot fully extinguish court access.",
+            "legal_concept": "restraint of legal proceedings"
+          }
+        ]
+      },
+      {
+        "clause_number": 17,
+        "clause_title": "Entire Agreement and Amendments",
+        "clause_text": "This Agreement contains the full and complete understanding of the parties with respect to the subject matter hereof, and supersedes all prior representations and understandings, whether oral or written. This Agreement may be amended only in writing by mutual agreement of the Parties.",
+        "clause_type": "general",
+        "retrieved_sections": [
+          {
+            "chunk_id": "S13_1",
+            "section": "13",
+            "title": "“Consent” defined",
+            "body": "Two or more persons are said to consent when they agree upon the same thing in the same sense.",
+            "score": 0.785,
+            "employee_risk": "LOW",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "consent",
+              "agreement"
+            ],
+            "agent_hint": "Baseline — two parties must agree on same thing in same sense",
+            "legal_concept": "consent"
+          },
+          {
+            "chunk_id": "S19_1",
+            "section": "19",
+            "title": "Voidability of agreements without free consent",
+            "body": "When consent to an agreement is caused by coercion,1*** fraud or misrepresentation, the agreement is a contract voidable at the option of the party whose consent was so caused. \nA party to a contract whose consent was caused by fraud or misrepresentation, may, if he thinks fit, insist that the contract shall be performed, and that he shall be put in the position in which he would have been if the representations made had been true. \n\nException.—If such consent was caused by misrepresentation or by silence, fraudulent within the meaning of section 17, the contract, nevertheless, is not voidable, if the party whose consent was so caused had the means of discovering the truth with ordinary diligence. \n\nExplanation.—A fraud or misrepresentation which did not cause the consent to a contract of the party on whom such fraud was practised, or to whom such misrepresentation was made, does not render a contract voidable.",
+            "score": 0.7488,
+            "employee_risk": "HIGH",
+            "typically_void": false,
+            "voidable": true,
+            "enforcement_likely": false,
+            "nda_clause_types": [
+              "remedy",
+              "voidable contract",
+              "rescission",
+              "set aside"
+            ],
+            "agent_hint": "Employee remedy section — explains HOW to void an NDA obtained by fraud, coercion or misrepresentation",
+            "legal_concept": "voidability without free consent"
+          },
+          {
+            "chunk_id": "S10_1",
+            "section": "10",
+            "title": "What agreements are contracts",
+            "body": "All agreements are contracts if they are made by the free consent of parties competent to contract, for a lawful consideration and with a lawful object, and are not hereby expressly declared to be void. \nNothing herein contained shall affect any law in force in India and not hereby expressly repealed by which any contract is required to be made in writing or in the presence of witnesses, or any law relating to the registration of documents.",
+            "score": 0.747,
+            "employee_risk": "MEDIUM",
+            "typically_void": false,
+            "voidable": false,
+            "enforcement_likely": true,
+            "nda_clause_types": [
+              "validity",
+              "formation"
+            ],
+            "agent_hint": "Check if NDA satisfies all 4 conditions of a valid contract",
+            "legal_concept": "valid contract formation"
+          }
+        ]
+      }
+    ],
+    "total_assessed": 17,
+    "total_skipped": 0
+  },
+  "validation": {
+    "valid": "Needs Revision",
+    "confidence_score": 0.5,
+    "citation_valid": false,
+    "relevance_score": 0.9,
+    "risk_level": "High",
+    "feedback": "Clause 11 has a wrong section cited. The correct section for 'Term and Post-Termination Obligations' should be S.73, not S.27. Also, the 'is_void' and 'is_voidable' flags are mutually exclusive. The clause is either void or voidable, but not both.",
+    "failed_clauses": [
+      11
+    ],
+    "validation_summary": "The NDA risk report has some critical issues. The section cited for 'Term and Post-Termination Obligations' is incorrect, and the 'is_void' and 'is_voidable' flags are mutually exclusive. Please revise the report to fix these issues."
+  },
+  "xai_report": {
+    "nda_title": "NON-DISCLOSURE AGREEMENT",
+    "company_name": "Unknown Entity",
+    "risk_score": 23,
+    "risk_label": "LOW RISK",
+    "xai_clauses": [
+      {
+        "clause_number": 11,
+        "clause_title": "Term and Post-Termination Obligations",
+        "clause_type": "termination",
+        "risk_level": "HIGH",
+        "retrieval_xai": {
+          "top_section": "S.27",
+          "top_score": 0.7638,
+          "score_delta": 0.006,
+          "confidence": "MEDIUM",
+          "rank_explanation": "S.27 ranked 1st (score: 0.7638) with narrow margin of 0.006 — ambiguous mapping over next section",
+          "all_sections": [
+            {
+              "section": "S.27",
+              "score": 0.7638,
+              "rank": 1,
+              "legal_concept": "restraint of trade",
+              "employee_risk": "HIGH"
+            },
+            {
+              "section": "S.56",
+              "score": 0.7578,
+              "rank": 2,
+              "legal_concept": "frustration and impossibility",
+              "employee_risk": "LOW"
+            },
+            {
+              "section": "S.23",
+              "score": 0.7556,
+              "rank": 3,
+              "legal_concept": "unlawful object or consideration",
+              "employee_risk": "HIGH"
+            }
+          ]
+        },
+        "keyword_xai": {
+          "matched_keywords": [],
+          "overlap_score": 0.0,
+          "per_section": [],
+          "explanation": "No trigger keywords matched — retrieval driven by semantic similarity only"
+        },
+        "cot_xai": {
+          "think_block": "Okay, let's break this down. The user wants me to analyze an NDA clause under the Indian Contract Act from an employee's perspective. The clause is about the term and post-termination obligations. The risk level is flagged as HIGH by the primary analyzer.\n\nFirst, I need to understand what the clause is saying. The key part is that the obligations of the Receiving Party remain in effect for a certain number of years after termination. The employee here is likely the Receiving Party, so their obli...[truncated]",
+          "think_summary": [
+            "The user wants me to analyze an NDA clause under the Indian Contract Act from an employee's perspective.",
+            "The employee here is likely the Receiving Party, so their obligations to keep the information confidential continue even after they leave the company.",
+            "Section 27 of the ICA deals with agreements that restrain the trade of a person, making them void unless there's a reasonable justification.",
+            "But if the restriction is too broad in terms of time or scope, it could be deemed unreasonable and thus void under Section 27.",
+            "If the number filled in is unreasonable (like 10 years for a low-level employee), it could be challenged."
+          ],
+          "key_concern": "The clause may violate Section 27 of the Indian Contract Act by imposing unreasonable post-termination restrictions on the employee's professional activities without specifying a reasonable time limit or scope.",
+          "critical_phrases": [
+            "obligations of the Receiving Party under this Agreement shall remain in effect for a period of [__] years from the date of termination"
+          ],
+          "cot_risk_level": "HIGH",
+          "agrees_with_analyser": true
+        },
+        "human_explanation": "This clause means you must keep company secrets private even after leaving for [__] years. It's flagged HIGH risk because the blank time limit could be unfairly long, violating ICA Section 27 which bans unreasonable trade restrictions. You should negotiate a specific, short duration (like 1-2 years) and ensure it only covers actual confidential info you had access to. The words 'Receiving Party' and blank time period '[__] years' made this flag."
+      }
+    ],
+    "total_explained": 1,
+    "total_skipped": 16
+  },
+  "final_response": "════════════════════════════════════════════════════════════\n  NDA RISK ANALYSIS REPORT\n════════════════════════════════════════════════════════════\n  NDA Title      : NON-DISCLOSURE AGREEMENT\n  Company        : Unknown Entity\n  Risk Score     : 23/100\n  Risk Label     : LOW RISK\n  Recommendation : Standard NDA — review recommended\n\n  Clauses Assessed : 17\n  Clauses Skipped  : 0\n────────────────────────────────────────────────────────────\n\n  Clause 11 — Term and Post-Termination Obligations\n    Risk Level     : HIGH\n    Void           : YES\n    Sections       : ['S.27']\n    Red Flags      : ['post-termination obligations', 'restraint of trade']\n    Negotiate      : ['request a specific and reasonable time limit for post-termination obligations', 'seek clarification on the scope of restricted activities', \"propose alternative language that balances the employer's interests with your own career freedom\"]\n    Explanation    : This clause means you must keep company secrets private even after leaving for [__] years. It's flagged HIGH risk because the blank time limit could be unfairly long, violating ICA Section 27 which bans unreasonable trade restrictions. You should negotiate a specific, short duration (like 1-2 years) and ensure it only covers actual confidential info you had access to. The words 'Receiving Party' and blank time period '[__] years' made this flag.\n    Key Concern    : The clause may violate Section 27 of the Indian Contract Act by imposing unreasonable post-termination restrictions on the employee's professional activities without specifying a reasonable time limit or scope.\n    ────────────────────────────────────────────────────────\n\n  BREAKDOWN\n    HIGH   clauses : 1\n    MEDIUM clauses : 0\n    LOW    clauses : 0\n    VOID   clauses : ['Term and Post-Termination Obligations']\n════════════════════════════════════════════════════════════",
+  "segment_output_path": "C:\\NDA_Analyser\\data\\nda_example02_structured_20260509_204014.json",
+  "retry_count": 3,
+  "error": null,
+  "feedback": "Clause 11 has a wrong section cited. The correct section for 'Term and Post-Termination Obligations' should be S.73, not S.27. Also, the 'is_void' and 'is_voidable' flags are mutually exclusive. The clause is either void or voidable, but not both.",
+  "failed_clauses": [
+    11
+  ]
+}

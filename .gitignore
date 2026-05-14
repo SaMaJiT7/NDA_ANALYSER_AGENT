@@ -90,12 +90,12 @@ documents/
 *.sqlite3
 *.db
 
-# ========================
-# Data / Output Files (may contain sensitive NDA content)
-# ========================
-data/
-validation_result.json
-*.json
+# # ========================
+# # Data / Output Files (may contain sensitive NDA content)
+# # ========================
+# data/
+# validation_result.json
+# *.json
 
 # ========================
 # Misc

@@ -1,0 +1,215 @@
+{
+  "nda_title": "Executive Non-Disclosure and Non-Solicitation of Employees Agreement and Executive Severance/Non-Compete Agreement",
+  "company_name": "Unknown Entity",
+  "risk_score": 66,
+  "risk_label": "MEDIUM RISK",
+  "xai_clauses": [
+    {
+      "clause_number": 1,
+      "clause_title": "DEFINITIONS",
+      "clause_type": "definitions",
+      "risk_level": "MEDIUM",
+      "retrieval_xai": {
+        "top_section": "S.18",
+        "top_score": 0.7487,
+        "score_delta": 0.0021,
+        "confidence": "LOW",
+        "rank_explanation": "S.18 ranked 1st (score: 0.7487) with narrow margin of 0.0021 — ambiguous mapping over next section",
+        "all_sections": [
+          {
+            "section": "S.18",
+            "score": 0.7487,
+            "rank": 1,
+            "legal_concept": "misrepresentation",
+            "employee_risk": "HIGH"
+          },
+          {
+            "section": "S.17",
+            "score": 0.7466,
+            "rank": 2,
+            "legal_concept": "fraud",
+            "employee_risk": "HIGH"
+          },
+          {
+            "section": "S.27",
+            "score": 0.7375,
+            "rank": 3,
+            "legal_concept": "restraint of trade",
+            "employee_risk": "HIGH"
+          }
+        ]
+      },
+      "keyword_xai": {
+        "matched_keywords": [],
+        "overlap_score": 0.0,
+        "per_section": [],
+        "explanation": "No trigger keywords matched — retrieval driven by semantic similarity only"
+      },
+      "cot_xai": {
+        "think_block": "Okay, let's start by looking at the clause provided. The title is \"DEFINITIONS,\" and it defines \"Sears Confidential Information.\" The clause is pretty broad, listing various types of information that are considered confidential. The employee's perspective here is important because they need to understand what they're agreeing to.\n\nFirst, I need to figure out what the clause restricts or requires. It seems to define what counts as confidential information, which the employee must not disclose. Th...[truncated]",
+        "think_summary": [
+          "The employee's perspective here is important because they need to understand what they're agreeing to.",
+          "It seems to define what counts as confidential information, which the employee must not disclose.",
+          "Next, which sections of the Indian Contract Act apply?",
+          "Alternatively, maybe other sections like 27 (restraint of trade) are more relevant.",
+          "For example, if the definition is too broad, it might be void as against public policy or under Section 27 if it's an unreasonable restraint."
+        ],
+        "key_concern": "The clause defines 'Sears Confidential Information' so broadly that it may be unenforceable under the Indian Contract Act due to ambiguity and overreach.",
+        "critical_phrases": [
+          "non-public information which Sears designates as being confidential",
+          "under the circumstances surrounding disclosure should be treated as confidential",
+          "other information relating to the business of Sears that is not known generally to the public or in the industry"
+        ],
+        "cot_risk_level": "MEDIUM",
+        "agrees_with_analyser": true
+      },
+      "human_explanation": "This clause means you must keep almost all Sears business details secret, even if they aren’t clearly marked as confidential. It’s flagged as medium risk because the definition is so vague (like ‘non-public information’ and ‘circumstances surrounding disclosure’) that it could trap you accidentally violating it. Under Section 29 of the Indian Contract Act, overly broad or unclear terms can make an agreement invalid. You should ask your lawyer to revise this to narrow the scope and clarify what exactly counts as confidential."
+    },
+    {
+      "clause_number": 4,
+      "clause_title": "RETURN OF SEARS PROPERTY",
+      "clause_type": "general",
+      "risk_level": "LOW",
+      "retrieval_xai": {
+        "top_section": "S.27",
+        "top_score": 0.7454,
+        "score_delta": 0.0026,
+        "confidence": "LOW",
+        "rank_explanation": "S.27 ranked 1st (score: 0.7454) with narrow margin of 0.0026 — ambiguous mapping over next section",
+        "all_sections": [
+          {
+            "section": "S.27",
+            "score": 0.7454,
+            "rank": 1,
+            "legal_concept": "restraint of trade",
+            "employee_risk": "HIGH"
+          },
+          {
+            "section": "S.75",
+            "score": 0.7428,
+            "rank": 2,
+            "legal_concept": "compensation on rescission",
+            "employee_risk": "LOW"
+          },
+          {
+            "section": "S.23",
+            "score": 0.7403,
+            "rank": 3,
+            "legal_concept": "unlawful object or consideration",
+            "employee_risk": "HIGH"
+          }
+        ]
+      },
+      "keyword_xai": {
+        "matched_keywords": [],
+        "overlap_score": 0.0,
+        "per_section": [],
+        "explanation": "No trigger keywords matched — retrieval driven by semantic similarity only"
+      },
+      "cot_xai": {
+        "think_block": "",
+        "think_summary": [],
+        "key_concern": "Standard clause — low legal risk under ICA",
+        "critical_phrases": [],
+        "cot_risk_level": "LOW",
+        "agrees_with_analyser": true
+      },
+      "human_explanation": "This is a standard general clause rated LOW risk. S.27 ranked 1st (score: 0.7454) with narrow margin of 0.0026 — ambiguous mapping over next section No immediate action required, but review before signing."
+    },
+    {
+      "clause_number": 5,
+      "clause_title": "CONFLICT OF INTEREST",
+      "clause_type": "non-compete",
+      "risk_level": "HIGH",
+      "retrieval_xai": {
+        "top_section": "S.27",
+        "top_score": 0.7658,
+        "score_delta": 0.7658,
+        "confidence": "MEDIUM",
+        "rank_explanation": "S.27 ranked 1st (score: 0.7658) with clear margin of 0.7658 over next section",
+        "all_sections": [
+          {
+            "section": "S.27",
+            "score": 0.7658,
+            "rank": 1,
+            "legal_concept": "restraint of trade",
+            "employee_risk": "HIGH"
+          }
+        ]
+      },
+      "keyword_xai": {
+        "matched_keywords": [],
+        "overlap_score": 0.0,
+        "per_section": [],
+        "explanation": "No trigger keywords matched — retrieval driven by semantic similarity only"
+      },
+      "cot_xai": {
+        "think_block": "Okay, let's start by understanding the user's query. They want an analysis of a non-compete clause from an Indian employee's perspective under the Indian Contract Act 1872. The clause is labeled as high risk.\n\nFirst, I need to break down the clause. The key parts are about not having financial investments in customers, suppliers, or competitors, and not engaging in competitive activities. The employee and their immediate family are restricted. The main concern here is whether these restrictions ...[truncated]",
+        "think_summary": [
+          "They want an analysis of a non-compete clause from an Indian employee's perspective under the Indian Contract Act 1872.",
+          "The clause is labeled as high risk.",
+          "The employee and their immediate family are restricted.",
+          "The main concern here is whether these restrictions are enforceable under the ICA.",
+          "Looking at the Indian Contract Act, Section 27 comes to mind."
+        ],
+        "key_concern": "The clause imposes overly broad restrictions on an employee's financial interests and activities without defining reasonable scope or duration, violating principles of restraint of trade under Indian Contract Act",
+        "critical_phrases": [
+          "financial investments or other interests with customers/suppliers/competitors",
+          "not engage in any competitive activity",
+          "adversely affect independence and objectivity"
+        ],
+        "cot_risk_level": "HIGH",
+        "agrees_with_analyser": true
+      },
+      "human_explanation": "This clause bans you and your family from investing in or working with the company's customers/suppliers/competitors, and prohibits all activities that might affect your work focus. It's high risk because these restrictions are too broad with no time limits or clear boundaries, violating ICA Section 27 which bans unreasonable trade restrictions. You should consult a lawyer to negotiate narrower terms or have this clause removed, focusing on the words 'financial investments', 'competitive activity', and 'independence' which make it legally problematic."
+    },
+    {
+      "clause_number": 6,
+      "clause_title": "NON-SOLICITATION OF EMPLOYEES",
+      "clause_type": "non-solicitation",
+      "risk_level": "HIGH",
+      "retrieval_xai": {
+        "top_section": "S.27",
+        "top_score": 0.7333,
+        "score_delta": 0.7333,
+        "confidence": "LOW",
+        "rank_explanation": "S.27 ranked 1st (score: 0.7333) with clear margin of 0.7333 over next section",
+        "all_sections": [
+          {
+            "section": "S.27",
+            "score": 0.7333,
+            "rank": 1,
+            "legal_concept": "restraint of trade",
+            "employee_risk": "HIGH"
+          }
+        ]
+      },
+      "keyword_xai": {
+        "matched_keywords": [],
+        "overlap_score": 0.0,
+        "per_section": [],
+        "explanation": "No trigger keywords matched — retrieval driven by semantic similarity only"
+      },
+      "cot_xai": {
+        "think_block": "Okay, let's break this down. The user is asking me to analyze an NDA clause from the perspective of an Indian employee under the Indian Contract Act 1872. The clause in question is the Non-Solicitation of Employees clause. \n\nFirst, I need to understand what the clause is saying. It states that during employment and for one year after, the employee can't solicit or encourage others to leave Sears or help hire Sears employees for another business. The key phrases here are \"solicit or encourage any...[truncated]",
+        "think_summary": [
+          "The user is asking me to analyze an NDA clause from the perspective of an Indian employee under the Indian Contract Act 1872.",
+          "The clause in question is the Non-Solicitation of Employees clause.",
+          "It states that during employment and for one year after, the employee can't solicit or encourage others to leave Sears or help hire Sears employees for another business.",
+          "The key phrases here are \"solicit or encourage any person to leave her/his employment\" and \"assist in any way with the hiring of any Sears employee.\"\n\nNext, I have to check which sections of the ICA apply.",
+          "Section 27 deals with agreements that restrain trade, and it's void unless there's a legitimate interest to protect."
+        ],
+        "key_concern": "The clause may violate ICA Section 27 by imposing an unreasonable restraint on the employee's future employment rights",
+        "critical_phrases": [
+          "solicit or encourage any person to leave her/his employment with Sears",
+          "assist in any way with the hiring of any Sears employee"
+        ],
+        "cot_risk_level": "HIGH",
+        "agrees_with_analyser": true
+      },
+      "human_explanation": "This clause stops you from helping hire Sears employees or encouraging them to leave for one year after your job ends. It's HIGH risk because it's too broad and likely void under ICA Section 27, which bans unfair restraints on trade or employment. The phrases 'any person' and 'assist in any way' make it overly restrictive. You should consult a lawyer to challenge this or negotiate narrower limits."
+    }
+  ],
+  "total_explained": 4,
+  "total_skipped": 36
+}

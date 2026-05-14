@@ -20,8 +20,7 @@ def load_prompt(path: str) -> str:
 
 
 
-COT_PROMPT = load_prompt("prompts/COT_Prompt.md")
-XAI_PROMPT = load_prompt("prompts/XAI_Prompt.md")
+COT_AND_EXPLAIN_PROMPT = load_prompt("prompts/COT_and_Explain_Prompt.md")
 
 
 _groq_client = None          # global — lowercase g
@@ -227,42 +226,53 @@ def _summarise_think(think_text: str) -> list[str]:
         and len(s.strip()) > 20
     ]
 
-    return key_sentences[:5] 
+    return key_sentences[:5]
 
-def cot_explain(
-        clause_title: str,
-        clause_type: str,
-        clause_text: str,
-        risk_level : str,
+def cot_and_explain(
+    clause_title  : str,
+    clause_type   : str,
+    clause_text   : str,
+    risk_level    : str,
+    retrieval_xai : dict,
+    keyword_xai   : dict,
 ) -> dict:
-    
-
+    """
+    Does CoT legal reasoning AND plain-language explanation in ONE Groq call.
+    Returns dict with:
+      cot_xai          : {think_block, think_summary, key_concern, critical_phrases, cot_risk_level, agrees_with_analyser}
+      human_explanation: plain-language string
+    """
     if not clause_text:
         return {
-            "think_block"         : "",
-            "think_summary"       : [],
-            "key_concern"         : "No clause text provided",
-            "critical_phrases"    : [],
-            "cot_risk_level"      : risk_level,
-            "agrees_with_analyser": True
+            "cot_xai": {
+                "think_block"         : "",
+                "think_summary"       : [],
+                "key_concern"         : "No clause text provided",
+                "critical_phrases"    : [],
+                "cot_risk_level"      : risk_level,
+                "agrees_with_analyser": True
+            },
+            "human_explanation": f"This clause was flagged {risk_level} risk. No text was available for deeper analysis."
         }
     
     client = load_Groq_client()
 
-    prompt = (COT_PROMPT
-    .replace("{clause_title}", clause_title)
-    .replace("{clause_type}",  clause_type)
-    .replace("{risk_level}",   risk_level)
-    .replace("{clause_text}",  clause_text)
+    prompt = (COT_AND_EXPLAIN_PROMPT
+        .replace("{clause_title}",          clause_title)
+        .replace("{clause_type}",           clause_type)
+        .replace("{risk_level}",            risk_level)
+        .replace("{clause_text}",           clause_text)
+        .replace("{retrieval_explanation}", retrieval_xai.get("rank_explanation", "N/A"))
+        .replace("{keyword_explanation}",   keyword_xai.get("explanation", "N/A"))
     )
 
     try:
         response = client.chat.completions.create(
-            model="qwen/qwen3-32b",
-            messages = [{"role": "user", "content": prompt}],
-            max_tokens          = 2000,
-            temperature         = 0.6,   # Groq recommended for Qwen3 thinking
-            reasoning_effort    = "default"  # enables ◣ block
+            model            = "qwen/qwen3-32b",
+            messages         = [{"role": "user", "content": prompt}],
+            max_tokens       = 1500,
+            temperature      = 0.6,
+            reasoning_effort = "default"
         )
 
         raw = str(response.choices[0].message.content)
@@ -270,8 +280,7 @@ def cot_explain(
         parsed = _extract_json_after_think(raw)
         cot_risk = parsed.get("cot_risk_level", risk_level)
 
-
-        return {
+        cot_xai = {
             "think_block"         : think,
             "think_summary"       : _summarise_think(think),
             "key_concern"         : parsed.get("key_concern", ""),
@@ -279,69 +288,37 @@ def cot_explain(
             "cot_risk_level"      : cot_risk,
             "agrees_with_analyser": cot_risk == risk_level
         }
-    
-    except Exception as e:
-        logger.warning(f"     ↳ ⚠️  CoT failed: {e}")
+        
+        human_explanation = parsed.get("human_explanation", "").strip()
+        if not human_explanation:
+            human_explanation = (
+                f"This clause was flagged {risk_level} risk. "
+                f"{retrieval_xai.get('rank_explanation', '')} "
+                f"{keyword_xai.get('explanation', '')}"
+            )
+
         return {
-            "think_block"         : "",
-            "think_summary"       : [],
-            "key_concern"         : f"CoT unavailable: {e}",
-            "critical_phrases"    : [],
-            "cot_risk_level"      : risk_level,
-            "agrees_with_analyser": True
+            "cot_xai"          : cot_xai,
+            "human_explanation": human_explanation
         }
     
-def build_explanation(
-    clause_title  : str,
-    clause_type   : str,
-    risk_level    : str,
-    retrieval_xai : dict,
-    keyword_xai   : dict,
-    cot_xai       : dict
-) -> str:
-    
-    """
-    Sends all 3 XAI components to Qwen and gets
-    a single plain-language human explanation.
-    """
-
-    client = load_Groq_client()
-    think_summary = cot_xai.get("think_summary", [])
-    cot_text = " ".join(think_summary) if think_summary \
-                    else cot_xai.get("key_concern", "")
-    
-    prompt = (XAI_PROMPT
-    .replace("{clause_title}", clause_title)
-    .replace("{clause_type}",  clause_type)
-    .replace("{risk_level}",   risk_level)
-    .replace("{retrieval_explanation}", retrieval_xai.get("rank_explanation", ""))
-    .replace("{keyword_explanation}",   keyword_xai.get("explanation", ""))
-    .replace("{cot_explanation}", cot_text)
-    )
-
-
-    try:
-        response = client.chat.completions.create(
-            model       = "qwen/qwen3-32b",
-            messages    = [{"role": "user", "content": prompt}],
-            max_tokens  = 300,        # short — only 3 sentences needed
-            temperature = 0.4         # slightly creative for plain language
-        )
-
-        raw = str(response.choices[0].message.content).strip()
-
-        if "</think>" in raw:
-            raw = raw.split("</think>")[-1].strip()
-        
-        return raw
-
     except Exception as e:
-        logger.warning(f"     ↳ ⚠️  Explanation synthesis failed: {e}")
-        return (
-            f"This clause was flagged {risk_level} risk. "
-            f"{retrieval_xai.get('rank_explanation', '')} "
-            f"{keyword_xai.get('explanation', '')}"
-        )
+        logger.warning(f"     ↳ ⚠️  CoT+Explain failed: {e}")
+        return {
+            "cot_xai": {
+                "think_block"         : "",
+                "think_summary"       : [],
+                "key_concern"         : f"Analysis unavailable: {e}",
+                "critical_phrases"    : [],
+                "cot_risk_level"      : risk_level,
+                "agrees_with_analyser": True
+            },
+            "human_explanation": (
+                f"This clause was flagged {risk_level} risk. "
+                f"{retrieval_xai.get('rank_explanation', '')} "
+                f"{keyword_xai.get('explanation', '')}"
+            )
+        }
 
 
 def run_xai(risk_report: dict) -> dict:
@@ -349,18 +326,14 @@ def run_xai(risk_report: dict) -> dict:
     Runs full XAI pipeline on all assessed clauses.
 
     For each clause:
-      1. explain_retrieval()  — Qdrant score analysis
-      2. explain_keywords()   — token overlap with trigger_keywords
-      3. explain_cot()        — Qwen3-32B ◣ block reasoning (Groq)
-      4. build_explanation()  — Qwen3-32B synthesises all 3 into plain language
+      1. retrival_explain()   — Qdrant score analysis      (no API call)
+      2. keyword_explain()    — token overlap               (no API call)
+      3. cot_and_explain()    — CoT + human explanation     (1 Groq call)
 
-    Production fixes applied:
-      - clause_text safety check
-      - brace escaping for .format()
-      - think_block truncation for storage
-      - rate limit buffer between clauses
-      - cot_failed flag for error tracking
-      - graceful skip on empty clause_text
+    Optimisations:
+      - LOW risk clauses skipped from Groq call (saves ~70-80% quota)
+      - 2 Groq calls per clause → 1 Groq call per clause
+      - Rate limit buffer only applied when Groq is called
 
     Returns xai_report dict.
     """
@@ -423,23 +396,41 @@ def run_xai(risk_report: dict) -> dict:
         )
         clause_text_safe = clause_text.replace("{", "{{").replace("}", "}}")
 
-        # ── Component 3 — CoT XAI (Groq) ─────────
-        # Groq API call 1
-        cot_xai = cot_explain(
-            clause_title = clause_title,
-            clause_type  = clause_type,
-            clause_text  = clause_text_safe,
-            risk_level   = risk_level
-        )
-
-        # ── Fix 3 — Truncate think_block for storage
-        if len(cot_xai.get("think_block", "")) > 500:
-            cot_xai["think_block"] = cot_xai["think_block"][:500] + "...[truncated]"
-
-        # ── Log CoT result ────────────────────────
-        if cot_xai.get("cot_failed"):
-            logger.warning(f"     ↳ ⚠️  CoT failed — using fallback")
+        # ── Component 3 & 4 — CoT + Explanation ──────────────────────────
+        # LOW risk clauses: skip Groq call → use lightweight fallback
+        # MEDIUM/HIGH risk:  1 Groq call via cot_and_explain()
+        if risk_level == "LOW":
+            logger.info(f"     ↳ LOW risk — skipping Groq CoT (quota optimisation)")
+            cot_xai = {
+                "think_block"         : "",
+                "think_summary"       : [],
+                "key_concern"         : "Standard clause — low legal risk under ICA",
+                "critical_phrases"    : [],
+                "cot_risk_level"      : "LOW",
+                "agrees_with_analyser": True
+            }
+            human_explanation = (
+                f"This is a standard {clause_type} clause rated LOW risk. "
+                f"{retrieval_xai.get('rank_explanation', '')} "
+                f"No immediate action required, but review before signing."
+            )
         else:
+            result = cot_and_explain(
+                clause_title  = clause_title,
+                clause_type   = clause_type,
+                clause_text   = clause_text_safe,
+                risk_level    = risk_level,
+                retrieval_xai = retrieval_xai,
+                keyword_xai   = keyword_xai,
+            )
+            cot_xai = result["cot_xai"]
+            human_explanation = result["human_explanation"]
+
+            # ── Truncate think_block for storage ──────
+            if len(cot_xai.get("think_block", "")) > 500:
+                cot_xai["think_block"] = cot_xai["think_block"][:500] + "...[truncated]"
+
+            # ── Log CoT result ────────────────────────
             logger.info(
                 f"     ↳ CoT       : agrees={cot_xai['agrees_with_analyser']} "
                 f"| concern={cot_xai.get('key_concern', '')[:60]}..."
@@ -451,16 +442,9 @@ def run_xai(risk_report: dict) -> dict:
                     f"Qwen3={cot_xai['cot_risk_level']}"
                 )
 
-        # ── Component 4 — Human Explanation ───────
-        # Groq API call 2
-        human_explanation = build_explanation(
-            clause_title  = clause_title,
-            clause_type   = clause_type,
-            risk_level    = risk_level,
-            retrieval_xai = retrieval_xai,
-            keyword_xai   = keyword_xai,
-            cot_xai       = cot_xai
-        )
+            # ── Rate limit buffer ─────────────────
+            time.sleep(2)
+
         logger.info(f"     ↳ Explanation: {human_explanation[:80]}...")
 
         xai_clauses.append({
@@ -473,11 +457,6 @@ def run_xai(risk_report: dict) -> dict:
             "cot_xai"          : cot_xai,
             "human_explanation": human_explanation
         })
-
-        # ── Fix 4 — Rate limit buffer ─────────────
-        # Groq free tier: 30 req/min for Qwen3-32B
-        # 2 calls per clause — sleep to avoid 429
-        time.sleep(2)
 
     # ── Build XAI report ──────────────────────────
     xai_report = {
@@ -512,6 +491,11 @@ def save_xai_report(
 if __name__ == "__main__":
 
     import sys
+    if sys.stdout.encoding.lower() != 'utf-8':
+        try:
+            sys.stdout.reconfigure(encoding='utf-8')
+        except AttributeError:
+            pass
 
     # ── Load risk_report.json directly if available ───
     risk_report_path = os.path.join(
@@ -579,7 +563,7 @@ if __name__ == "__main__":
               f"confidence: {clause['retrieval_xai']['confidence']})")
         print(f"    Keywords   : {clause['keyword_xai']['matched_keywords'][:5]}")
         print(f"    CoT Agrees : {clause['cot_xai']['agrees_with_analyser']} "
-              f"| DeepSeek Risk: {clause['cot_xai']['cot_risk_level']}")
+              f"| Risk: {clause['cot_xai']['cot_risk_level']}")
         print(f"    Key Concern: {clause['cot_xai']['key_concern']}")
         print(f"    Explanation: {clause['human_explanation']}")
         print()

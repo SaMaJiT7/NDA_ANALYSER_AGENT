@@ -1,0 +1,10 @@
+{
+  "valid": "Approved",
+  "confidence_score": 0.9,
+  "relevance_score": 0.9,
+  "risk_level": "Medium",
+  "citation_valid": true,
+  "feedback": null,
+  "failed_clauses": null,
+  "validation_summary": "The report is legally accurate with correct citations and risk assessments. All high-risk clauses are properly flagged and justified. The risk score of 66 is plausible given the breakdown of clauses."
+}
