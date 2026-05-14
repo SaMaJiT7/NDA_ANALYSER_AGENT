@@ -28,32 +28,32 @@ BASE_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── Model Loading ─────────────────────────────────
 _model = None
-def load_model():
-    global _model
-    if _model is None:
-        llm = HuggingFaceEndpoint(
-        repo_id=os.getenv("HF_MODEL", "deepseek-ai/DeepSeek-V3"),
-        task="text-generation",
-        max_new_tokens=1024,
-        do_sample=False,
-        repetition_penalty=1.03,
-        ) # type: ignore
-        logger.info("Loading model...")
-        _model = ChatHuggingFace(llm=llm)
-    return _model
-
 # def load_model():
 #     global _model
 #     if _model is None:
+#         llm = HuggingFaceEndpoint(
+#         repo_id=os.getenv("HF_MODEL", "deepseek-ai/DeepSeek-V3"),
+#         task="text-generation",
+#         max_new_tokens=1024,
+#         do_sample=False,
+#         repetition_penalty=1.03,
+#         ) # type: ignore
 #         logger.info("Loading model...")
-#         _model = ChatOpenAI(
-#             model="llama-3.3-70b-versatile",
-#             api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
-#             base_url="https://api.groq.com/openai/v1",
-#             temperature=0.0,
-#             model_kwargs={"max_tokens": 1024},
-#         )
+#         _model = ChatHuggingFace(llm=llm)
 #     return _model
+
+def load_model():
+    global _model
+    if _model is None:
+        logger.info("Loading model...")
+        _model = ChatOpenAI(
+            model="llama-3.3-70b-versatile",
+            api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
+            base_url="https://api.groq.com/openai/v1",
+            temperature=0.0,
+            model_kwargs={"max_tokens": 1024},
+        )
+    return _model
 
 
 
@@ -191,7 +191,11 @@ def load_prompt(path: str) -> str:
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
-ANALYSER_TEMPLATE = load_prompt("prompts/Analyser_prompt.md")
+PROMPTS_DIR = os.path.join(BASE_DIR, "prompts")
+
+ANALYSER_TEMPLATE = load_prompt(
+    os.path.join(PROMPTS_DIR, "Analyser_prompt.md")
+)
 
 def analyser_chain():
     """
@@ -226,6 +230,22 @@ def get_gemini_model():
     return _gemini_model
 
 
+
+def standardize_citations(violated_sections: List[str]) -> List[str]:
+    """
+    Normalizes variations like 'Section 27', 'Sec 27', or '27'
+    into the strict 'S.27' format required by the Validator.
+    """
+    standardized = []
+    for section in violated_sections:
+        # Match 'Section 27', 'Sec. 27', 'Sec 27', or just '27'
+        # Group 1 captures the number
+        match = re.search(r'(?:Section|Sec\.?|S\.?|)\s*(\d+)', section, re.IGNORECASE)
+        if match:
+            standardized.append(f"S.{match.group(1)}")
+        else:
+            standardized.append(section) # Fallback if no digits found
+    return list(set(standardized)) # Remove duplicates
 
 
 def assess_clause(clause: dict,feedback: str | None = None) -> dict:
@@ -307,21 +327,6 @@ def assess_clause(clause: dict,feedback: str | None = None) -> dict:
             "skipped"           : True
         }
 
-def standardize_citations(violated_sections: List[str]) -> List[str]:
-    """
-    Normalizes variations like 'Section 27', 'Sec 27', or '27' 
-    into the strict 'S.27' format required by the Validator.
-    """
-    standardized = []
-    for section in violated_sections:
-        # Match 'Section 27', 'Sec. 27', 'Sec 27', or just '27'
-        # Group 1 captures the number
-        match = re.search(r'(?:Section|Sec\.?|S\.?|)\s*(\d+)', section, re.IGNORECASE)
-        if match:
-            standardized.append(f"S.{match.group(1)}")
-        else:
-            standardized.append(section) # Fallback if no digits found
-    return list(set(standardized)) # Remove duplicates
 
 # ── Extract company name from NDA ─────────────────
 def extract_company_name(structured_nda: dict) -> str:

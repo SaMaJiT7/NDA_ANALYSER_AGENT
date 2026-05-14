@@ -2,13 +2,32 @@ import os
 import sys
 import json
 import logging
-from typing import TypedDict, Optional
+from datetime import datetime
 
+# ── Fix Windows console encoding ─────────────────
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8') # type: ignore
+    except AttributeError:
+        pass
 from dotenv import load_dotenv
 from langgraph.graph import START, StateGraph, END
 
-from tools.segment import run_segmentation_pipeline
-from Agents.Analyser import run_analyser, save_report
+from Agents.state import NDAState
+from Agents.nodes import (
+    segment_node,
+    analyse_node,
+    validate_node,
+    explainable_node,
+    respond_node,
+)
+from Agents.routers import (
+    route_after_segment,
+    route_after_analyse,
+    route_after_validation,
+    route_after_xai,
+)
+
 
 load_dotenv()
 
@@ -16,162 +35,204 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-MAX_RETRIES = 3
 
-class NDAState(TypedDict):
-    # ── Input ─────────────────────────────────────
-    pdf_path        : str
-
-    # ── Pipeline data ─────────────────────────────
-    structured_nda  : Optional[dict]
-    risk_report     : Optional[dict]
-    validation      : Optional[dict]
-    xai_report      : Optional[dict]
-    final_response  : Optional[str]
-
-    # ── output data ─────────────────────────────
-    segment_output_path : Optional[str]
-    
-
-    # ── Control flow ──────────────────────────────
-    retry_count     : int
-    error           : Optional[str]
-    feedback        : Optional[str]
-    failed_clauses  : Optional[list]
+# ── Retry node — increments counter before re-analysis ──
+def retry_node(state: NDAState) -> NDAState:
+    """Bumps retry_count and passes feedback back to analyser."""
+    count = state.get("retry_count", 0) + 1
+    logger.info(f"  🔄 Retry #{count}")
+    return {**state, "retry_count": count}
 
 
-def segment_node(state: NDAState) -> NDAState:
+# ── Build LangGraph ──────────────────────────────
+def build_graph():
     """
-    Node 1 — Segments NDA PDF into structured clauses.
-    Input  : pdf_path
-    Output : structured_nda
+    NDA Analyser Pipeline
+    ─────────────────────
+    START → segment → analyse → validate ──┐
+                         ↑                  │
+                         └── retry ←── (Needs Revision)
+                                            │
+                              (Approved) ──→ xai → respond → END
+                              (Rejected) ──→ END
+                              (Error)    ──→ respond → END
     """
-    logger.info("Running the Segmentation Node...")
-    try:
-        pdf_path = state["pdf_path"]
-        result = run_segmentation_pipeline(pdf_path)
-        if not result:
-            return {**state, "error": "Segmentation failed"}
-        structured_nda, structured_path = result
-        if not structured_nda or not structured_nda.get("clauses"):
-            return {
-                **state,
-                "error": "Segmenter returned no clauses"
-            }
+    graph = StateGraph(NDAState)
 
-        logger.info(
-            f"  ✅ Segmented — "
-            f"{structured_nda.get('total_clauses', 0)} clauses found"
-            f"  📄 Saved to: {structured_path}"
-        )
+    # ── Add nodes ─────────────────────────────────
+    graph.add_node("segment",   segment_node)
+    graph.add_node("analyse",   analyse_node)
+    graph.add_node("validate",  validate_node)
+    graph.add_node("retry",     retry_node)
+    graph.add_node("xai",       explainable_node)
+    graph.add_node("responder", respond_node)
 
+    # ── Edges ─────────────────────────────────────
+    # START → segment
+    graph.add_edge(START, "segment")
+
+    # segment → analyse | END
+    graph.add_conditional_edges("segment", route_after_segment, {
+        "analyse": "analyse",
+        "stop"   : END,
+    })
+
+    # analyse → validate | END
+    graph.add_conditional_edges("analyse", route_after_analyse, {
+        "validate": "validate",
+        "stop"    : END,
+    })
+
+    # validate → xai | retry | responder | END
+    graph.add_conditional_edges("validate", route_after_validation, {
+        "xai"      : "xai",
+        "retry"    : "retry",
+        "responder": "responder",
+        "stop"     : END,
+    })
+
+    # retry → analyse (loop back)
+    graph.add_edge("retry", "analyse")
+
+    # xai → responder (always — errors handled inside)
+    graph.add_conditional_edges("xai", route_after_xai, {
+        "responder": "responder",
+    })
+
+    # responder → END
+    graph.add_edge("responder", END)
+
+    return graph.compile()
+
+
+# ── Run pipeline ─────────────────────────────────
+def run_pipeline(pdf_path: str) -> dict:
+    """
+    Entry point — takes a PDF path, returns final state.
+    Uses stream() to capture each node's output individually.
+    """
+    logger.info(f"\n{'═' * 60}")
+    logger.info(f"  NDA ANALYSER PIPELINE")
+    logger.info(f"  Input: {pdf_path}")
+    logger.info(f"{'═' * 60}\n")
+
+    app = build_graph()
+
+    initial_state: NDAState = {
+        "pdf_path"           : pdf_path,
+        "structured_nda"     : None,
+        "risk_report"        : None,
+        "validation"         : None,
+        "xai_report"         : None,
+        "final_response"     : None,
+        "segment_output_path": None,
+        "retry_count"        : 0,
+        "error"              : None,
+        "feedback"           : None,
+        "failed_clauses"     : None,
+    }
+
+    # ── Stream to capture per-node outputs ────────
+    node_outputs = {}   # {node_name: output_dict}
+    final_state  = dict(initial_state)
+    step_counter = 0
+
+    for event in app.stream(initial_state):
+        # event is {node_name: state_update_dict}
+        for node_name, node_update in event.items():
+            step_counter += 1
+            logger.info(f"  📦 Step {step_counter} — captured output from '{node_name}'")
+
+            # Store the raw update from this node
+            # If a node runs multiple times (retry), append with suffix
+            key = node_name
+            if key in node_outputs:
+                run_idx = 2
+                while f"{node_name}_run{run_idx}" in node_outputs:
+                    run_idx += 1
+                key = f"{node_name}_run{run_idx}"
+
+            node_outputs[key] = _serialisable_copy(node_update)
+
+            # Merge into running state
+            if isinstance(node_update, dict):
+                final_state.update(node_update)
+
+    # ── Save per-node outputs ─────────────────────
+    _save_node_outputs(node_outputs, pdf_path)
+
+    # ── Print final response ──────────────────────
+    if final_state.get("final_response"):
+        print(final_state["final_response"])
+    elif final_state.get("error"):
+        print(f"\n❌ Pipeline failed: {final_state['error']}")
+    else:
+        print("\n⚠️  Pipeline completed but no response generated")
+
+    return final_state
+
+
+def _serialisable_copy(obj):
+    """Return a JSON-safe copy of obj, dropping non-serialisable values."""
+    if isinstance(obj, dict):
         return {
-            **state,
-            "segment_output_path": structured_path,
-            "structured_nda": structured_nda,
-            "error"         : None
+            k: _serialisable_copy(v) for k, v in obj.items()
+            if isinstance(v, (str, int, float, bool, list, dict, type(None)))
+        }
+    if isinstance(obj, list):
+        return [_serialisable_copy(item) for item in obj]
+    return obj
+
+
+def _save_node_outputs(node_outputs: dict, pdf_path: str):
+    """Save per-node outputs to data/node_outputs_<timestamp>.json"""
+    try:
+        base_dir   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        ts         = datetime.now().strftime("%Y%m%d_%H%M%S")
+        out_path   = os.path.join(base_dir, "data", f"node_outputs_{ts}.json")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+        payload = {
+            "pdf_path"     : pdf_path,
+            "timestamp"    : ts,
+            "total_steps"  : len(node_outputs),
+            "node_order"   : list(node_outputs.keys()),
+            "node_outputs" : node_outputs,
         }
 
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+
+        logger.info(f"  ✅ Node outputs saved to {out_path}")
     except Exception as e:
-        logger.error(f"  ❌ Segmenter failed: {e}")
-        return {**state, "error": f"Segmenter failed: {e}"}
+        logger.warning(f"  ⚠️  Could not save node outputs: {e}")
 
 
-def analyse_node(state: NDAState) -> NDAState:
-    """
-    Node 2 — Analyses each clause using RAG + ICA vector DB.
-    Input  : structured_nda (+ optional feedback on retry)
-    Output : risk_report
-    """
-    from Agents.Analyser import run_analyser
+# ── CLI entry point ──────────────────────────────
+if __name__ == "__main__":
 
-    retry = state.get("retry_count", 0)
+    if len(sys.argv) < 2:
+        print("Usage: python -m Agents.orchestrator <path-to-nda.pdf>")
+        sys.exit(1)
 
-    # ── Check max retries before running ─────────
-    if retry >= MAX_RETRIES:
-        logger.warning(
-            f"\n── [Node 2] Analyser ────────────────────────\n"
-            f"  ⚠️  Max retries ({MAX_RETRIES}) reached — skipping re-analysis\n"
-            f"  Proceeding with best available report"
-        )
-        return state    # ← return as-is, validate_node will route to responder
+    pdf_path = sys.argv[1]
 
-    logger.info(
-        f"\n── [Node 2] Analyser "
-        f"{'(retry ' + str(retry) + '/' + str(MAX_RETRIES) + ')' if retry > 0 else ''}"
-        f" ───────────────────"
-    )
-    
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        sys.exit(1)
+
+    final_state = run_pipeline(pdf_path)
+
+    # ── Save final state for debugging ────────────
     try:
-        structured_nda = state["structured_nda"]
-        if not structured_nda:
-            return {**state, "error": "structured_nda missing from state"}
-        feedback = state.get("feedback", None)
-        failed_clauses = state.get("failed_clauses")
-
-        risk_report = run_analyser(
-            structured_nda,
-            feedback       = feedback,
-            failed_clauses = failed_clauses
-        )
-
-        if not risk_report:
-            return {**state, "error": "Analyser returned empty report"}
-
-        logger.info(
-            f"  ✅ Analysed — "
-            f"Score: {risk_report.get('risk_score')}/100 | "
-            f"Label: {risk_report.get('risk_label')}"
-        )
-
-        return {
-            **state,
-            "risk_report"   : risk_report,
-            "feedback"      : None,        # ← clear after use
-            "failed_clauses": None,
-            "error"         : None
+        base_dir    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        state_path  = os.path.join(base_dir, "data", "pipeline_state.json")
+        serialisable = {
+            k: v for k, v in final_state.items()
+            if isinstance(v, (str, int, float, bool, list, dict, type(None)))
         }
-
+        with open(state_path, "w", encoding="utf-8") as f:
+            json.dump(serialisable, f, indent=2, ensure_ascii=False)
+        logger.info(f"✅ Pipeline state saved to {state_path}")
     except Exception as e:
-        logger.error(f"  ❌ Analyser failed: {e}")
-        return {**state, "error": f"Analyser failed: {e}"}
-
-    
-def validate_node(state: NDAState) -> NDAState:
-    """
-    Node 3 - Validates the risk report and generates the feedback for re-analysis if needed.
-    Input  : risk_report
-    Output : validation
-    """
-    from Agents.Validator import validate_report
-
-    risk_report = state.get("risk_report")
-
-    if not risk_report:
-        return {**state, "error": "risk_report missing from state"}
-    
-    try:
-        validation = validate_report(risk_report)
-
-        status = validation.get("valid", "Rejected")
-        icon   = "✅" if status == "Approved" else \
-                 "⚠️ " if status == "Needs Revision" else "❌"
-
-        logger.info(
-            f"  {icon} Status     : {status}\n"
-            f"  Confidence : {validation.get('confidence_score')}\n"
-            f"  Citation   : {validation.get('citation_valid')}"
-        )
-
-        return {
-            **state,
-            "validation"    : validation,
-            "feedback"      : validation.get("feedback"),
-            "failed_clauses": validation.get("failed_clauses"),
-            "error"         : None
-        }
-
-    except Exception as e:
-        logger.error(f"  ❌ Validator failed: {e}")
-        return {**state, "error": f"Validator failed: {e}"}
-
+        logger.warning(f"⚠️  Could not save pipeline state: {e}")

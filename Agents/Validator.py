@@ -52,45 +52,35 @@ _model = None
 VALIDATOR_PROMPT = load_prompt("prompts/ValidatorPrompt.md")
 
 def load_model():
-    global _chain,_model
+    global _chain, _model
     if _chain is not None:
         return _chain
 
-    logger.info("⏳ Loading validator model (Groq/DeepSeek)...")
+    logger.info("⏳ Loading validator model (Groq/llama-3.1-8b)...")
 
-    # llm = ChatOpenAI(
-    #     model=os.getenv("Validator_MODEL"), # type: ignore
-    #     api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
-    #     base_url="https://api.groq.com/openai/v1",
-    #     temperature=0.0,
-    #     model_kwargs={"max_tokens": 1024},
-    # )
-    llm = HuggingFaceEndpoint(
-        repo_id=os.getenv("HF_MODEL", "deepseek-ai/DeepSeek-V3"),
-        task="text-generation",
-        max_new_tokens=1024,
-        do_sample=False,
-        repetition_penalty=1.03,
-        ) # type: ignore
-    logger.info("Loading model...")
-    _model = ChatHuggingFace(llm=llm)
+    llm = ChatOpenAI(
+        model=os.getenv("Validator_MODEL", "llama-3.1-8b-instant"),
+        api_key=SecretStr(os.getenv("GROQ_API_KEY") or ""),
+        base_url="https://api.groq.com/openai/v1",
+        temperature=0.0,
+        model_kwargs={"max_tokens": 1024},
+    )
+    _model = llm  # ← assign to _model
 
-    # ── Use JsonOutputParser instead ──────────────
     parser = JsonOutputParser(pydantic_object=ValidationResult)
 
     prompt = PromptTemplate(
-        template         = VALIDATOR_PROMPT,
-        input_variables  = ["risk_report", "company_name"],
-        partial_variables= {
+        template=VALIDATOR_PROMPT,
+        input_variables=["risk_report", "company_name"],
+        partial_variables={
             "format_instructions": parser.get_format_instructions()
         }
     )
 
-    _chain = prompt | _model | parser
+    _chain = prompt | _model | parser  # ← now _model is set
 
     logger.info("✅ Validator model loaded")
     return _chain
-
 
 def prepare_report_for_prompt(risk_report: dict) -> dict:
     """

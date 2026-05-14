@@ -1,12 +1,20 @@
 import fitz
 import re
 import os
+import sys
 import json
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 from datetime import datetime
 from pathlib import Path
+
+# ── Fix Windows console encoding ─────────────────
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8') # type: ignore
+    except AttributeError:
+        pass
 
 # ── LLM Segmentation ──────────────────────────────
 SEGMENT_PROMPT = """
